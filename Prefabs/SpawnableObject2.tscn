@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg3t4x5rdeikl"]
+
+[ext_resource type="Texture2D" uid="uid://c1qpicm83n75q" path="res://Untitled.png" id="1_n477a"]
+
+[node name="SpawnableObject" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.619608, 0.309804, 0.631373, 1)
+self_modulate = Color(0.266667, 0.396078, 0.454902, 1)
+texture = ExtResource("1_n477a")

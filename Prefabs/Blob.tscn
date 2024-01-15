@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://db2ekmc1osqj1"]
+
+[ext_resource type="Texture2D" uid="uid://c1qpicm83n75q" path="res://Untitled.png" id="1_jr4fo"]
+
+[node name="Blob" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.647059, 0.584314, 0, 1)
+self_modulate = Color(0.513726, 0.537255, 0.145098, 1)
+texture = ExtResource("1_jr4fo")
