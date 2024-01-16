@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://baomge1u844sk"]
+
+[ext_resource type="Script" path="res://Resources/Building.cs" id="1_lxfbr"]
+
+[resource]
+script = ExtResource("1_lxfbr")
+maxTurnsOfHealth = 1
+buildCost = 0
+repairCost = 0
+atlasIndex = Vector2i(0, 0)

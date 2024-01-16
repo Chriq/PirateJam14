@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://buskvgmuj20vs"]
+
+[ext_resource type="PackedScene" uid="uid://dqiltdwov8ham" path="res://UI/BuildingCard/BuildingCard.tscn" id="1_pd58n"]
+[ext_resource type="Resource" uid="uid://baomge1u844sk" path="res://Resources/Wall.tres" id="2_estob"]
+
+[node name="BuildPanel" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 268.0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[node name="BuildingCard" parent="." instance=ExtResource("1_pd58n")]
+offset_left = 10.0
+offset_top = 270.0
+offset_right = 74.0
+offset_bottom = 358.0
+buildingInfo = ExtResource("2_estob")
