@@ -26,13 +26,13 @@ public partial class BlobTurnManager : Node
 		BlobInit();
 	}
 	public override void _Process(double delta)
-	{
+	{/*
 		time += delta;
 		if (time > 5)
 		{
 			time -= 1;
 			BlobTurn();
-		}
+		}*/
 	}
 
 	// Blob Prefab

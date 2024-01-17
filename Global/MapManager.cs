@@ -32,9 +32,10 @@ public partial class MapManager : Node {
 		}
 	}
 
-	//public void BuildOnTile(Vector2 mousePosition, Building building) {
-		//Vector2I cell = tilemap.LocalToMap(mousePosition);
-		//tilemap.SetCell(0, cell, 0, building.atlasIndex);
-//
-	//}
+	public void BuildOnTile(Vector2 mousePosition, PackedScene building) {
+		Vector2I cell = tilemap.LocalToMap(mousePosition);
+		Node2D build = (Node2D) building.Instantiate();
+		build.Position = tilemap.MapToLocal(cell);
+		SpawnNode.AddChild(build);	
+	}
 }

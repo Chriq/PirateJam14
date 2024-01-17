@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bexg2dp4mechb"]
+
+[ext_resource type="Script" path="res://Prefabs/Buildings/Wall.cs" id="1_k4al7"]
+[ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="1_o3gfu"]
+[ext_resource type="Resource" uid="uid://baomge1u844sk" path="res://Resources/Wall.tres" id="2_f3ppb"]
+
+[node name="Wall" type="Node2D"]
+script = ExtResource("1_k4al7")
+buildingData = ExtResource("2_f3ppb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o3gfu")
+region_enabled = true
+region_rect = Rect2(32, 64, 32, 32)
