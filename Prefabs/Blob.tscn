@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://db2ekmc1osqj1"]
+[gd_scene load_steps=3 format=3 uid="uid://db2ekmc1osqj1"]
 
+[ext_resource type="Script" path="res://ObjectScripts/Blob.cs" id="1_eonpt"]
 [ext_resource type="Texture2D" uid="uid://c1qpicm83n75q" path="res://Untitled.png" id="1_jr4fo"]
 
 [node name="Blob" type="Node2D"]
+script = ExtResource("1_eonpt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.647059, 0.584314, 0, 1)
