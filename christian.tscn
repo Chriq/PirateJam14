@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c21ifyqrnx6lm"]
+[gd_scene load_steps=8 format=3 uid="uid://c21ifyqrnx6lm"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_lkltx"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_2tms1"]
 [ext_resource type="Script" path="res://Global/BlobTurnManager.cs" id="4_otqth"]
+[ext_resource type="Script" path="res://Global/TurnSystemManager.cs" id="5_2ksb3"]
 [ext_resource type="PackedScene" uid="uid://db2ekmc1osqj1" path="res://Prefabs/Blob.tscn" id="5_5p4wy"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="6_30gxn"]
 [ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="7_xj00j"]
@@ -20,6 +21,9 @@ script = ExtResource("2_2tms1")
 [node name="BlobTurnManager" type="Node" parent="."]
 script = ExtResource("4_otqth")
 BlobScene = ExtResource("5_5p4wy")
+
+[node name="TurnSystemManager" type="Node" parent="."]
+script = ExtResource("5_2ksb3")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("6_30gxn")

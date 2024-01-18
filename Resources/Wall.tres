@@ -7,4 +7,4 @@ script = ExtResource("1_lxfbr")
 maxTurnsOfHealth = 1
 buildCost = 0
 repairCost = 0
-atlasIndex = Vector2i(0, 0)
+type = 0

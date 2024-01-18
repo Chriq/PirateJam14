@@ -16,6 +16,9 @@ public partial class BlobTurnManager : Node
 	// Singleton
 	public static BlobTurnManager Instance;
 	double time = 0;
+
+	[Signal]
+	public delegate void BlobTurnEndedEventHandler();
 	
 	public override void _Ready()
 	{
@@ -38,24 +41,26 @@ public partial class BlobTurnManager : Node
 	// Blob Prefab
 	[Export] public PackedScene BlobScene;
 	
-	(int, int)[] blob_initial_indices = {(0,0)};
+	Vector2I[] blob_initial_indices = new Vector2I[1] { new Vector2I(1, 0) };
 	
 	// Blob List
 	public List<Blob> Blobs;
 	
 	public void BlobInit()
 	{
-		foreach ((int x, int y) in blob_initial_indices)
+		foreach (Vector2I gridPosition in blob_initial_indices)
 		{
 			// Instantiate
 			Blob blob = (Blob) (Node2D) BlobScene.Instantiate();
 			blob.InitBlob(false, false);
+
+			blob.Position = MapManager.Instance.tilemap.MapToLocal(gridPosition);
 			
-			blob.Position = new Vector2(MapManager.Instance.square_size * x, MapManager.Instance.square_size * y);
+			//blob.Position = new Vector2(MapManager.Instance.square_size * x, MapManager.Instance.square_size * y);
 			
 			// Update References
 			Blobs.Add(blob);
-			//MapManager.Instance.map.Add(new Vector2I(x, y), blob);
+			MapManager.Instance.AddBlobToMap(gridPosition, blob);
 			
 			// Insert
 			MapManager.Instance.SpawnNode.AddChild(blob);			
@@ -95,5 +100,7 @@ public partial class BlobTurnManager : Node
 					}
 			}
 		}
+
+		EmitSignal(SignalName.BlobTurnEnded);
 	}
 }

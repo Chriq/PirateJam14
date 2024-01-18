@@ -11,6 +11,9 @@ public partial class PlayerTurnManager : Node {
 
 	// List of all active building
 	public List<Node2D> Buildings;
+
+	[Signal]
+	public delegate void PlayerTurnEndedEventHandler();
 	
 	public override void _Ready() {
 		if(Instance == null) {
@@ -40,5 +43,9 @@ public partial class PlayerTurnManager : Node {
 		Vector2 mousePosition = GetViewport().GetMousePosition();
 		MapManager.Instance.BuildOnTile(mousePosition, building);
 		selectedItemToBuild = null;
+	}
+
+	public void EndTurn() {
+		EmitSignal(SignalName.PlayerTurnEnded);
 	}
 }
