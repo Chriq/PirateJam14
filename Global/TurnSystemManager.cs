@@ -8,7 +8,7 @@ public partial class TurnSystemManager : Node {
 	}
 
 	private void StartPlayerTurn() {
-		
+		PlayerResources.Instance.CollectResources();
 	}
 
 	private void StartBlobTurn() {

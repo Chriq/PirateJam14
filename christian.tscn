@@ -1,28 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://c21ifyqrnx6lm"]
+[gd_scene load_steps=10 format=3 uid="uid://c21ifyqrnx6lm"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_lkltx"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_2tms1"]
 [ext_resource type="Script" path="res://Global/BlobTurnManager.cs" id="4_otqth"]
 [ext_resource type="Script" path="res://Global/TurnSystemManager.cs" id="5_2ksb3"]
 [ext_resource type="PackedScene" uid="uid://db2ekmc1osqj1" path="res://Prefabs/Blob.tscn" id="5_5p4wy"]
+[ext_resource type="Script" path="res://Global/PlayerResources.cs" id="5_vq40s"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="6_30gxn"]
 [ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="7_xj00j"]
+[ext_resource type="PackedScene" uid="uid://dxxn7x4byd2hx" path="res://Prefabs/Buildings/PowerPlant.tscn" id="9_1qk15"]
 
 [node name="Scene" type="Node2D"]
 
-[node name="MapManager" type="Node" parent="." node_paths=PackedStringArray("SpawnNode", "tilemap")]
+[node name="Singletons" type="Node" parent="."]
+
+[node name="MapManager" type="Node" parent="Singletons" node_paths=PackedStringArray("SpawnNode", "tilemap")]
 script = ExtResource("1_lkltx")
-SpawnNode = NodePath("../SpawnNode")
-tilemap = NodePath("../TileMap")
+SpawnNode = NodePath("../../SpawnNode")
+tilemap = NodePath("../../TileMap")
 
-[node name="PlayerTurnManager" type="Node" parent="."]
+[node name="PlayerTurnManager" type="Node" parent="Singletons" node_paths=PackedStringArray("initialBuildingContainer")]
 script = ExtResource("2_2tms1")
+initialBuildingContainer = NodePath("../../InitialBuildings")
 
-[node name="BlobTurnManager" type="Node" parent="."]
+[node name="BlobTurnManager" type="Node" parent="Singletons"]
 script = ExtResource("4_otqth")
 BlobScene = ExtResource("5_5p4wy")
 
-[node name="TurnSystemManager" type="Node" parent="."]
+[node name="PlayerResources" type="Node" parent="Singletons"]
+script = ExtResource("5_vq40s")
+
+[node name="TurnSystemManager" type="Node" parent="Singletons"]
 script = ExtResource("5_2ksb3")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -33,3 +41,8 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 0, 2, 2, 0, 0, 3, 0, 2, 4, 
 [node name="SpawnNode" type="Node2D" parent="."]
 
 [node name="BuildPanel" parent="." instance=ExtResource("7_xj00j")]
+
+[node name="InitialBuildings" type="Node" parent="."]
+
+[node name="PowerPlant" parent="InitialBuildings" instance=ExtResource("9_1qk15")]
+position = Vector2(176, 16)

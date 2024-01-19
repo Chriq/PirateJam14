@@ -1,11 +1,7 @@
-using Godot;
-using System;
+using System.Collections.Generic;
 
-public partial class Wall : Node2D {
-	[Export] private Building buildingData;
-	private int currentHealth;
-
-    public override void _Ready() {
-        currentHealth = buildingData.maxTurnsOfHealth;
+public partial class Wall : IBuilding {
+    public override Dictionary<ResourceType, int> YieldResources() {
+        return new Dictionary<ResourceType, int>();
     }
 }

@@ -71,12 +71,14 @@ public partial class MapManager : Node {
 		return node;
 	}
 	
-	public void BuildOnTile(Vector2 mousePosition, PackedScene building) {
+	public Node2D BuildOnTile(Vector2 mousePosition, PackedScene building) {
 		Vector2I cell = tilemap.LocalToMap(mousePosition);
 		Node2D build = (Node2D) building.Instantiate();
 		build.Position = tilemap.MapToLocal(cell);
 		SpawnNode.AddChild(build);
 		AddBuildingToMap(cell, build);
+
+		return build;
 	}
 
 	public void AddBlobToMap(Vector2I gridPosition, Node2D blob) {

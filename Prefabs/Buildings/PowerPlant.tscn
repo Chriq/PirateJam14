@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxxn7x4byd2hx"]
+
+[ext_resource type="Script" path="res://Prefabs/Buildings/PowerPlant.cs" id="1_cndpw"]
+[ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="2_j5f2n"]
+[ext_resource type="Resource" uid="uid://b2cduygmwrfdo" path="res://Resources/PowerPlant.tres" id="2_qj2r0"]
+
+[node name="PowerPlant" type="Node2D"]
+script = ExtResource("1_cndpw")
+buildingData = ExtResource("2_qj2r0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_j5f2n")
+region_enabled = true
+region_rect = Rect2(0, 96, 32, 32)
