@@ -31,13 +31,46 @@ public partial class MapManager : Node {
 	[Export] public int grid_y = 12;
 	
 	public Dictionary<Vector2I, HexNode> map = new();
-
+	
+	public Vector2I[][] surround_offsets =
+	{
+		new Vector2I[]
+		{
+			new Vector2I(-1, -1),
+			new Vector2I(-1, 0),
+			new Vector2I(-1, 1),
+			new Vector2I(0, 1),
+			new Vector2I(1, 0),
+			new Vector2I(0, -1)
+		},
+		new Vector2I[]
+		{
+			new Vector2I(0, -1),
+			new Vector2I(-1, 0),
+			new Vector2I(0, 1),
+			new Vector2I(1, 1),
+			new Vector2I(1, 0),
+			new Vector2I(1, -1)
+		},
+	};
+	
 	public override void _Ready() {
-		if(Instance == null) {
+		if(Instance == null)
 			Instance = this;
-		}
 	}
-
+	
+	public HexNode GetTile(Vector2I position)
+	{
+		if (map.ContainsKey(position))
+			return map[position];
+		
+		HexNode node = new HexNode(null, null);
+		
+		map.Add(position, node);
+		
+		return node;
+	}
+	
 	public void BuildOnTile(Vector2 mousePosition, PackedScene building) {
 		Vector2I cell = tilemap.LocalToMap(mousePosition);
 		Node2D build = (Node2D) building.Instantiate();
@@ -55,7 +88,7 @@ public partial class MapManager : Node {
 			map.Add(gridPosition, new HexNode(null, blob));
 		}
 	}
-
+	
 	public void AddBuildingToMap(Vector2I gridPosition, Node2D building) {
 		HexNode tile;
 		if(map.TryGetValue(gridPosition, out tile)) {

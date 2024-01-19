@@ -16,13 +16,8 @@ public partial class PlayerTurnManager : Node {
 	public delegate void PlayerTurnEndedEventHandler();
 	
 	public override void _Ready() {
-		if(Instance == null) {
-			GD.Print("SINGLE!!!");
+		if(Instance == null)
 			Instance = this;
-		}
-		else{
-			GD.Print("MULTPLE SINGLETON!!!");
-		}
 	}
 
 	public override void _Process(double delta) {
