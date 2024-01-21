@@ -33,6 +33,11 @@ script = ExtResource("5_vq40s")
 [node name="TurnSystemManager" type="Node" parent="Singletons"]
 script = ExtResource("5_2ksb3")
 
+[node name="InitialBuildings" type="Node" parent="."]
+
+[node name="PowerPlant" parent="InitialBuildings" instance=ExtResource("9_1qk15")]
+position = Vector2(176, 16)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("6_30gxn")
 format = 2
@@ -41,8 +46,3 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 0, 2, 2, 0, 0, 3, 0, 2, 4, 
 [node name="SpawnNode" type="Node2D" parent="."]
 
 [node name="BuildPanel" parent="." instance=ExtResource("7_xj00j")]
-
-[node name="InitialBuildings" type="Node" parent="."]
-
-[node name="PowerPlant" parent="InitialBuildings" instance=ExtResource("9_1qk15")]
-position = Vector2(176, 16)

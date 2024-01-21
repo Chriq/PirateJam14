@@ -1,25 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://buskvgmuj20vs"]
+[gd_scene load_steps=7 format=3 uid="uid://buskvgmuj20vs"]
 
+[ext_resource type="Script" path="res://UI/BuildingPanel/BuildingPanel.cs" id="1_7t8jj"]
 [ext_resource type="PackedScene" uid="uid://dqiltdwov8ham" path="res://UI/BuildingCard/BuildingCard.tscn" id="1_pd58n"]
 [ext_resource type="Resource" uid="uid://baomge1u844sk" path="res://Resources/Wall.tres" id="2_estob"]
 [ext_resource type="PackedScene" uid="uid://bexg2dp4mechb" path="res://Prefabs/Buildings/Wall.tscn" id="3_ihbms"]
+[ext_resource type="Texture2D" uid="uid://clb80giyncjqv" path="res://Art/UI.png" id="4_5cyd0"]
 [ext_resource type="Script" path="res://UI/EndPlayerTurn.cs" id="4_sndm3"]
 
-[node name="BuildPanel" type="Node2D"]
+[node name="BuildPanel" type="Node2D" node_paths=PackedStringArray("electricityLabel", "woodLabel", "steelLabel")]
+script = ExtResource("1_7t8jj")
+electricityLabel = NodePath("ResourceLabel/Electricity/Label")
+woodLabel = NodePath("ResourceLabel/Wood/Label")
+steelLabel = NodePath("ResourceLabel/Steel/Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 268.0
+offset_left = 567.0
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.364706, 0.364706, 0.364706, 1)
 
 [node name="Wall" parent="." instance=ExtResource("1_pd58n")]
-offset_left = 10.0
-offset_top = 270.0
-offset_right = 74.0
-offset_bottom = 358.0
+offset_left = 572.0
+offset_top = 7.0
+offset_right = 636.0
+offset_bottom = 95.0
 buildingInfo = ExtResource("2_estob")
 buildingPrefab = ExtResource("3_ihbms")
+
+[node name="ResourceLabel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 567.0
+offset_top = 261.0
+offset_right = 640.0
+offset_bottom = 318.0
+
+[node name="Electricity" type="Sprite2D" parent="ResourceLabel"]
+position = Vector2(11, 9)
+texture = ExtResource("4_5cyd0")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Label" type="Label" parent="ResourceLabel/Electricity"]
+offset_left = 9.0
+offset_top = -12.0
+offset_right = 58.0
+offset_bottom = 11.0
+text = "0"
+
+[node name="Wood" type="Sprite2D" parent="ResourceLabel"]
+position = Vector2(11, 29)
+texture = ExtResource("4_5cyd0")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Label" type="Label" parent="ResourceLabel/Wood"]
+offset_left = 9.0
+offset_top = -12.0
+offset_right = 58.0
+offset_bottom = 11.0
+text = "0"
+
+[node name="Steel" type="Sprite2D" parent="ResourceLabel"]
+position = Vector2(11, 47)
+texture = ExtResource("4_5cyd0")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="Label" type="Label" parent="ResourceLabel/Steel"]
+offset_left = 9.0
+offset_top = -12.0
+offset_right = 58.0
+offset_bottom = 11.0
+text = "0"
 
 [node name="EndTurn" type="TextureButton" parent="."]
 offset_left = 565.0
