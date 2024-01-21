@@ -32,6 +32,8 @@ public partial class IBuilding : Node2D {
 		currentHealth -= damage;
 		
 		if (currentHealth <= 0)
+		{
 			status = BuildingState.DESTROYED;
+		}
 	}
 }

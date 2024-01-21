@@ -3,7 +3,7 @@ using System;
 
 public partial class Blob : Node2D
 {
-	public Vector2I position;
+	public Vector2I position { get; private set; }
 	
 	// Blob state
 	private int freeze_counter = 0;
@@ -26,18 +26,16 @@ public partial class Blob : Node2D
 	
 	public bool BlobTurn()
 	{
-		GD.Print($"Blob [{position}] - Freeze({freeze_counter}) Counter({counter})");
-		
 		// Frozen - Do not update counter
 		if (freeze_counter > 0)
 		{
-			if (--freeze_counter <= 0)
+			if (freeze_counter-- <= 0)
 				// TODO: Update Visual Freeze Indicator
 
 			return false;
 		}	
 		
 		// Decrement counter
-		return --counter <= 0;
+		return counter-- <= 0;
 	}
 }

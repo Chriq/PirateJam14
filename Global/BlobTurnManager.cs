@@ -43,7 +43,7 @@ public partial class BlobTurnManager : Node
 	
 	// Blob Sliders
 	[ExportGroup("Blob Turn Behavior")]
-	[Export] int blob_initial_counter = 5;
+	[Export] int blob_initial_counter = 6;
 	[Export] int blob_freeze_counter = 4;
 	[Export] int blob_eat_counter = 5;
 	[Export] int blob_grow_counter = 5;
@@ -124,15 +124,14 @@ public partial class BlobTurnManager : Node
 					}
 				}
 				
+				GD.Print($"Blob [{blob.position}] Action [{action}]");
 				// Execute blob action
 				switch(action)
 				{
 					case (BlobAction.Eat_Building):
 					case (BlobAction.Eat_Wall):
 					{
-						GD.Print("Blob Turn : Eat");
-						// TODO: Decrease Health Function
-						//MapManager.Instance.GetTile(target).occupierBuilding;
+						((IBuilding) MapManager.Instance.GetTile(target).occupierBuilding).DamageHealth();
 						blob.SetCounter(blob_eat_counter);
 						break;
 					}
