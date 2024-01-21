@@ -3,15 +3,15 @@ using System;
 using System.Collections.Generic;
 
 public struct HexNode {
-	public Node2D occupierBuilding;
-	public Node2D occupierBlob;
+	public IBuilding occupierBuilding;
+	public Blob occupierBlob;
 
 	public HexNode() {
 		occupierBuilding = null;
 		occupierBlob = null;
 	}
 
-	public HexNode(Node2D building, Node2D blob) {
+	public HexNode(IBuilding building, Blob blob) {
 		occupierBuilding = building;
 		occupierBlob = blob;
 	}
@@ -70,10 +70,28 @@ public partial class MapManager : Node {
 		
 		return node;
 	}
+	public Vector2I[] GetOffsets(Vector2I position)
+	{
+		return surround_offsets[position[1] % 2];
+	}
+	
+	public void DeleteBuilding(Vector2I position)
+	{
+		IBuilding building = map[position].occupierBuilding;
+		
+		// Map
+		map.Remove(position);
+		
+		// Blobs List
+		PlayerTurnManager.Instance.playerBuildings.Remove(building);
+		
+		// Instance
+		building.QueueFree();
+	}
 	
 	public Node2D BuildOnTile(Vector2 mousePosition, PackedScene building) {
 		Vector2I cell = tilemap.LocalToMap(mousePosition);
-		Node2D build = (Node2D) building.Instantiate();
+		IBuilding build = (IBuilding) (Node2D) building.Instantiate();
 		build.Position = tilemap.MapToLocal(cell);
 		SpawnNode.AddChild(build);
 		AddBuildingToMap(cell, build);
@@ -81,7 +99,7 @@ public partial class MapManager : Node {
 		return build;
 	}
 
-	public void AddBlobToMap(Vector2I gridPosition, Node2D blob) {
+	public void AddBlobToMap(Vector2I gridPosition, Blob blob) {
 		HexNode tile;
 		if(map.TryGetValue(gridPosition, out tile)) {
 			tile.occupierBlob = blob;
@@ -99,7 +117,7 @@ public partial class MapManager : Node {
 		tile.occupierBlob = null;
 	}
 	
-	public void AddBuildingToMap(Vector2I gridPosition, Node2D building) {
+	public void AddBuildingToMap(Vector2I gridPosition, IBuilding building) {
 		HexNode tile;
 		if(map.TryGetValue(gridPosition, out tile)) {
 			tile.occupierBuilding = building;

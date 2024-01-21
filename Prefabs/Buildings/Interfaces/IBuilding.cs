@@ -36,13 +36,27 @@ public partial class IBuilding : Node2D {
 		}
 	}
 	
-	public void DamageHealth(int damage = 1)
+	public virtual void DamageHealth(Vector2I position, int damage = 1)
 	{
 		currentHealth -= damage;
 		
 		if (currentHealth <= 0)
 		{
+			switch(buildingData.type)
+			{
+				case (BuildingType.WALL):
+				case (BuildingType.LANDMINE):
+					{
+						MapManager.Instance.DeleteBuilding(position);
+						break;
+					}
+			}
+			
+			if (status == BuildingState.BUILDING)
+				RemoveChild(ConstructionSprite);
+			
 			status = BuildingState.DESTROYED;
+			// TODO: Spawn Destroyed Icon
 		}
 	}
 }

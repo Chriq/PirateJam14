@@ -19,17 +19,14 @@ public partial class PlayerTurnManager : Node {
 	public delegate void PlayerTurnEndedEventHandler();
 	
 	public override void _Ready() {
-		if(Instance == null) {
+		if(Instance == null)
 			Instance = this;
-		}
-		else{
-			GD.Print("MULTPLE SINGLETON!!!");
-		}
 
-		foreach(Node2D building in initialBuildingContainer.GetChildren()) {
+		foreach(IBuilding building in initialBuildingContainer.GetChildren()) {
 			playerBuildings.Add(building);
 
 			Vector2I gridPosition = MapManager.Instance.tilemap.LocalToMap(building.Position);
+			GD.Print(gridPosition);
 			MapManager.Instance.AddBuildingToMap(gridPosition, building);
 		}
 	}

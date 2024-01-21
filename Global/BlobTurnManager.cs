@@ -94,7 +94,7 @@ public partial class BlobTurnManager : Node
 			
 			if (blob.BlobTurn())
 			{
-				Vector2I[] offsets = MapManager.Instance.surround_offsets[blob.position[1] % 2];
+				Vector2I[] offsets = MapManager.Instance.GetOffsets(blob.position);
 				int len = offsets.Length;
 				int rand = (int) (GD.Randi() % len);
 				
@@ -143,7 +143,7 @@ public partial class BlobTurnManager : Node
 					case (BlobAction.Eat_Building):
 					case (BlobAction.Eat_Wall):
 					{
-						((IBuilding) MapManager.Instance.GetTile(target).occupierBuilding).DamageHealth();
+						((IBuilding) MapManager.Instance.GetTile(target).occupierBuilding).DamageHealth(target);
 						blob.SetCounter(blob_eat_counter);
 						break;
 					}
