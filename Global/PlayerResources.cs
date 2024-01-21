@@ -22,8 +22,6 @@ public partial class PlayerResources : Node {
 
 	public void CollectResources() {
 		foreach(IBuilding buildingNode in PlayerTurnManager.Instance.playerBuildings) {
-			GD.Print("Collecting ");
-
 			if (
 				buildingNode is IResourceBuilding resourceBuilding
 				&& 

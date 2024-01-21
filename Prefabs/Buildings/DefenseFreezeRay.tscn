@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkoxatwx0wkr8"]
+
+[ext_resource type="Texture2D" uid="uid://4ol7qj6ms2c5" path="res://Art/templazer.png" id="1_h2hmf"]
+[ext_resource type="Script" path="res://Prefabs/Buildings/DefenseFreezeRay.cs" id="1_xewnv"]
+[ext_resource type="Resource" uid="uid://d2upf2w8inp5f" path="res://Resources/DefenseFreezeRay.tres" id="2_opcrj"]
+
+[node name="DefenseFreezeRay" type="Node2D"]
+script = ExtResource("1_xewnv")
+buildingData = ExtResource("2_opcrj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.360784, 0.556863, 1, 1)
+self_modulate = Color(0, 0, 1, 1)
+texture = ExtResource("1_h2hmf")

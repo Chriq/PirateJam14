@@ -27,8 +27,9 @@ public partial class BlobTurnManager : Node
 	// Blob Turn Signal
 	[Signal] public delegate void BlobTurnEndedEventHandler();
 	
-	// Blob Prefab
+	// Prefab
 	[Export] public PackedScene BlobScene;
+	[Export] public Texture2D FrozenSprite;
 	
 	// Initial Blob Spawn
 	[Export] public Godot.Collections.Array<Vector2I> blob_initial_indices = new Godot.Collections.Array<Vector2I>
@@ -43,11 +44,11 @@ public partial class BlobTurnManager : Node
 	
 	// Blob Sliders
 	[ExportGroup("Blob Turn Behavior")]
-	[Export] int blob_initial_counter = 6;
-	[Export] int blob_freeze_counter = 4;
-	[Export] int blob_eat_counter = 5;
-	[Export] int blob_grow_counter = 5;
-	[Export] int blob_launch_counter = 5;
+	[Export] public int blob_initial_counter = 10;
+	[Export] public int blob_freeze_counter = 4;
+	[Export] public int blob_eat_counter = 5;
+	[Export] public int blob_grow_counter = 5;
+	[Export] public int blob_launch_counter = 5;
 	
 	private void BlobInit()
 	{
@@ -135,7 +136,7 @@ public partial class BlobTurnManager : Node
 					}
 				}
 				
-				GD.Print($"Blob [{blob.position}] Action [{action}]");
+				GD.Print($"BlobTurn:Blob: [{blob.position}] Action [{action}]");
 				// Execute blob action
 				switch(action)
 				{

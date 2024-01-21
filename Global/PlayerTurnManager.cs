@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public partial class PlayerTurnManager : Node {
 	public static PlayerTurnManager Instance;
 	
+	[Export] public Texture2D ConstructionSprite;
+	
 	// Building nodes 
 	[Export] public PackedScene[] BuildingScenes;
 	private PackedScene selectedItemToBuild;

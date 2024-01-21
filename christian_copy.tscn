@@ -1,15 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://mnmst1yewvjq"]
+[gd_scene load_steps=14 format=3 uid="uid://mnmst1yewvjq"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_kmqqc"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_uugve"]
+[ext_resource type="Texture2D" uid="uid://yu6y16br7xyo" path="res://Art/construction.png" id="3_cs8ro"]
 [ext_resource type="Script" path="res://Global/BlobTurnManager.cs" id="3_uf7lv"]
 [ext_resource type="PackedScene" uid="uid://db2ekmc1osqj1" path="res://Prefabs/Blob.tscn" id="4_e26mj"]
 [ext_resource type="Script" path="res://Global/PlayerResources.cs" id="5_26nxv"]
+[ext_resource type="Texture2D" uid="uid://cldelr3e2myju" path="res://Art/frozen.png" id="5_lbngt"]
 [ext_resource type="Script" path="res://Global/TurnSystemManager.cs" id="6_t2x4f"]
 [ext_resource type="PackedScene" path="res://Prefabs/Buildings/PowerPlant.tscn" id="7_e0312"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="8_50uws"]
 [ext_resource type="PackedScene" uid="uid://duytjno6gtnhy" path="res://Prefabs/Buildings/DefenseLaser.tscn" id="8_122uk"]
 [ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="9_2p70t"]
+[ext_resource type="PackedScene" uid="uid://bkoxatwx0wkr8" path="res://Prefabs/Buildings/DefenseFreezeRay.tscn" id="9_3ivj1"]
 
 [node name="Scene" type="Node2D"]
 
@@ -22,11 +25,13 @@ tilemap = NodePath("../../TileMap")
 
 [node name="PlayerTurnManager" type="Node" parent="Singletons" node_paths=PackedStringArray("initialBuildingContainer")]
 script = ExtResource("2_uugve")
+ConstructionSprite = ExtResource("3_cs8ro")
 initialBuildingContainer = NodePath("../../InitialBuildings")
 
 [node name="BlobTurnManager" type="Node" parent="Singletons"]
 script = ExtResource("3_uf7lv")
 BlobScene = ExtResource("4_e26mj")
+FrozenSprite = ExtResource("5_lbngt")
 
 [node name="PlayerResources" type="Node" parent="Singletons"]
 script = ExtResource("5_26nxv")
@@ -41,6 +46,9 @@ position = Vector2(176, 16)
 
 [node name="DefenseLaser" parent="InitialBuildings" instance=ExtResource("8_122uk")]
 position = Vector2(79, 60)
+
+[node name="DefenseFreezeRay" parent="InitialBuildings" instance=ExtResource("9_3ivj1")]
+position = Vector2(32, 136)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("8_50uws")

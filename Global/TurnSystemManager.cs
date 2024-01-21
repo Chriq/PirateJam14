@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class TurnSystemManager : Node {
+public partial class TurnSystemManager : Node {	
 	public override void _Ready() {
 		PlayerTurnManager.Instance.PlayerTurnEnded += StartBlobTurn;
 		BlobTurnManager.Instance.BlobTurnEnded += StartPlayerTurn;
@@ -23,9 +23,10 @@ public partial class TurnSystemManager : Node {
 			// Execute Defense Actions
 			switch (building.buildingData.type)
 			{
+				case (BuildingType.FREEZERAY):
 				case (BuildingType.LASER):
 				{
-					((DefenseLaser) building).Action();
+					((IActiveDefense) building).Action();
 					break;
 				}
 			}

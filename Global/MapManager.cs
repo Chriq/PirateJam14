@@ -93,6 +93,9 @@ public partial class MapManager : Node {
 	public void RemoveBlobFromMap(Vector2I gridPosition)
 	{
 		HexNode tile = map[gridPosition];
+		
+		SpawnNode.RemoveChild(tile.occupierBlob);
+		
 		tile.occupierBlob = null;
 	}
 	
