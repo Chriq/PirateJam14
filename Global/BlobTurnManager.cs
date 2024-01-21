@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public enum BlobAction
 {
-	None,
-	Thaw,
-	Eat,
+	Eat_Building,
 	Grow,
+	Eat_Wall,
 	Launch,
 }
 
@@ -42,7 +41,15 @@ public partial class BlobTurnManager : Node
 	// Blob List
 	public List<Blob> Blobs;
 	
-	public void BlobInit()
+	// Blob Sliders
+	[ExportGroup("Blob Turn Behavior")]
+	[Export] int blob_initial_counter = 5;
+	[Export] int blob_freeze_counter = 4;
+	[Export] int blob_eat_counter = 5;
+	[Export] int blob_grow_counter = 5;
+	[Export] int blob_launch_counter = 5;
+	
+	private void BlobInit()
 	{
 		foreach (Vector2I gridPosition in blob_initial_indices)
 		{
@@ -50,28 +57,17 @@ public partial class BlobTurnManager : Node
 		}
 	}
 	
-	public void SpawnBlob(Vector2I gridPosition)
+	private void SpawnBlob(Vector2I gridPosition)
 	{
 		// Instantiate
 		Blob blob = (Blob) (Node2D) BlobScene.Instantiate();
-		blob.InitBlob(gridPosition);
+		blob.InitBlob(gridPosition, (int) (GD.Randi() % blob_initial_counter));
 		
 		blob.Position = MapManager.Instance.tilemap.MapToLocal(gridPosition);
 		
 		// Update References
 		Blobs.Add(blob);
 		MapManager.Instance.AddBlobToMap(gridPosition, blob);
-		
-		// Update Surrounding
-		foreach (Vector2I off in MapManager.Instance.surround_offsets[
-			blob.position[1] % MapManager.Instance.surround_offsets.Length
-			])
-		{
-			Blob neighbor = (Blob) MapManager.Instance.GetTile(off + gridPosition).occupierBlob;
-			
-			if (neighbor != null)
-				neighbor.CheckSurrounded();	
-		}
 		
 		// Insert
 		MapManager.Instance.SpawnNode.AddChild(blob);
@@ -84,63 +80,85 @@ public partial class BlobTurnManager : Node
 		{
 			Blob blob = Blobs[blob_i];
 			
-			switch(blob.BlobTurn())
+			if (blob.BlobTurn())
 			{
-				case(BlobAction.None):
+				Vector2I[] offsets = MapManager.Instance.surround_offsets[blob.position[1] % 2];
+				int len = offsets.Length;
+				int rand = (int) (GD.Randi() % len);
+				
+				BlobAction action = BlobAction.Launch;
+				Vector2I target = new Vector2I(0,0);
+				
+				// Check neighboring cells for blob action
+				for (int i = 0; i < len; i++)
+				{
+					Vector2I pos = offsets[(i + rand) % len] + blob.position;
+					
+					HexNode node = MapManager.Instance.GetTile(pos);
+					
+					if (node.occupierBuilding != null)
 					{
-						break;
-					}
-				case(BlobAction.Thaw):
-					{
-						// TODO: Update Visuals to reflect thawed blob tile
-						GD.Print("Thaw!");
-						break;
-					}
-				case(BlobAction.Eat):
-					{
-						// TODO: Update building data - disable building
-						GD.Print("Eat!");
-						break;
-					}
-				case(BlobAction.Grow):
-					{
-						int off_ind = blob.position[1] % MapManager.Instance.surround_offsets.Length;
-						int len = MapManager.Instance.surround_offsets[off_ind].Length;
-						int rand = (int) (GD.Randi() % len);
+						IBuilding building = (IBuilding) node.occupierBuilding;
 						
-						for (int i = 0; i < len; i++)
+						if (building.buildingData.type != BuildingType.WALL)
 						{
-							Vector2I pos = MapManager.Instance.surround_offsets[off_ind][(i + rand) % len] + blob.position;							
-							
-							if (MapManager.Instance.GetTile(pos).occupierBlob == null)
-							{
-								SpawnBlob(pos);
-								break;
-							}
-							
+							action = BlobAction.Eat_Building;
+							target = pos;
+							break;
 						}
+						if (building.buildingData.type == BuildingType.WALL
+							&&
+							(int) action > (int) BlobAction.Eat_Wall)
+						{
+							target = pos;
+							action = BlobAction.Eat_Wall;
+						}
+					}
+					
+					if (node.occupierBlob == null
+						&&
+						(int) action > (int) BlobAction.Grow)
+					{
+						target = pos;
+						action = BlobAction.Grow;
+					}
+				}
+				
+				GD.Print($"Blob Action : {action}");
+				// Execute blob action
+				switch(action)
+				{
+					case (BlobAction.Eat_Building):
+					{
+						GD.Print("Blob Turn : Eat Building");
+						// TODO: Decrease Health Function
+						//MapManager.Instance.GetTile(target).occupierBuilding;
+						blob.SetCounter(blob_eat_counter);
 						break;
 					}
-				case(BlobAction.Launch):
+					case (BlobAction.Grow):
 					{
-						Vector2I pos = new Vector2I(0, 0);
-						
-						// TODO: Update Bounds checking
-						for (int i = 0; i < 5; i++)
+						SpawnBlob(target);
+						blob.SetCounter(blob_grow_counter);
+						break;
+					}
+					case (BlobAction.Launch):
+					{
+						for (int i = 0; i < 10; i++)
 						{
-							pos = new Vector2I(
+							target = new Vector2I(
 								(int) (GD.Randi() % MapManager.Instance.grid_x), 
 								(int) (GD.Randi() % MapManager.Instance.grid_y)
 								);
 							
-							if (MapManager.Instance.GetTile(pos).occupierBlob == null)
+							if (MapManager.Instance.GetTile(target).occupierBlob == null)
+								SpawnBlob(target);
 								break;
 						}
-						
-						if (MapManager.Instance.GetTile(pos).occupierBlob == null)
-							SpawnBlob(pos);
+						blob.SetCounter(blob_launch_counter);
 						break;
 					}
+				}
 			}
 		}
 		
