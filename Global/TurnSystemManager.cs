@@ -8,7 +8,18 @@ public partial class TurnSystemManager : Node {
 	}
 
 	private void StartPlayerTurn() {
+		// Collect Resources
 		PlayerResources.Instance.CollectResources();
+		
+		// Update Constructions
+		foreach (IBuilding building in PlayerTurnManager.Instance.playerBuildings)
+		{
+			if (building.status == BuildingState.BUILDING)
+				building.Construct();
+		} 
+		
+		// Execute Defense Actions
+		
 	}
 
 	private void StartBlobTurn() {

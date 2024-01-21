@@ -23,3 +23,9 @@ public enum BuildingType {
 	LUMBER_MILL,
 	POWER_PLANT
 }
+
+public enum BuildingState {
+	ACTIVE,
+	BUILDING,
+	DESTROYED,
+}

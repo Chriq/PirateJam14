@@ -10,7 +10,7 @@ public partial class PlayerResources : Node {
 	[Signal] 
 	public delegate void ResourcesCollectedEventHandler();
 
-    public override void _Ready() {
+	public override void _Ready() {
 		if(Instance == null) {
 			Instance = this;
 		}
@@ -18,18 +18,20 @@ public partial class PlayerResources : Node {
 		foreach(ResourceType type in Enum.GetValues(typeof(ResourceType))) {
 			playerResourceCounts.Add(type, 0);
 		}
-    }
+	}
 
-    public void CollectResources() {
-		foreach(Node2D buildingNode in PlayerTurnManager.Instance.playerBuildings) {
+	public void CollectResources() {
+		foreach(IBuilding buildingNode in PlayerTurnManager.Instance.playerBuildings) {
 			GD.Print("Collecting ");
 
-			IResourceBuilding building = null;
-			if(buildingNode is IResourceBuilding resourceBuilding) {
-				building = resourceBuilding;
-			}
-
-			if(building!= null && building.currentHealth > 0) {
+			if (
+				buildingNode is IResourceBuilding resourceBuilding
+				&& 
+				buildingNode.status == BuildingState.ACTIVE
+				) 
+			{
+				IResourceBuilding building = (IResourceBuilding) buildingNode;
+				
 				Dictionary<ResourceType, int> yields = building.YieldResources();
 				foreach(ResourceType key in yields.Keys) {
 					playerResourceCounts[key] += yields[key];

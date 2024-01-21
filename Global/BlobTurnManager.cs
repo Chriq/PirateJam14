@@ -143,6 +143,7 @@ public partial class BlobTurnManager : Node
 						blob.SetCounter(blob_grow_counter);
 						break;
 					}
+					
 					case (BlobAction.Launch):
 					{
 						for (int i = 0; i < 10; i++)
