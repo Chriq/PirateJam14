@@ -7,7 +7,8 @@ public partial class BuildingPanel : Node2D {
 	[Export] private Label steelLabel;
 
     public override void _Ready() {
-        PlayerResources.Instance.ResourcesCollected += UpdateResourceUI;
+        PlayerResources.Instance.ResourcesChanged += UpdateResourceUI;
+		UpdateResourceUI();
     }
 
     private void UpdateResourceUI() {

@@ -8,7 +8,7 @@ public partial class PlayerResources : Node {
 	public Dictionary<ResourceType, int> playerResourceCounts = new();
 
 	[Signal] 
-	public delegate void ResourcesCollectedEventHandler();
+	public delegate void ResourcesChangedEventHandler();
 
 	public override void _Ready() {
 		if(Instance == null) {
@@ -16,7 +16,7 @@ public partial class PlayerResources : Node {
 		}
 
 		foreach(ResourceType type in Enum.GetValues(typeof(ResourceType))) {
-			playerResourceCounts.Add(type, 0);
+			playerResourceCounts.Add(type, 30);
 		}
 	}
 
@@ -40,19 +40,21 @@ public partial class PlayerResources : Node {
 			}
 		}
 
-		EmitSignal(SignalName.ResourcesCollected);
+		EmitSignal(SignalName.ResourcesChanged);
 	}
 
 	public bool SpendResourcesOnBuilding(Node2D buildingObject) {
 		IBuilding building = (IBuilding) buildingObject;
-		foreach(ResourceType resource in building.buildingData.buildCost.Keys) {
-			if(playerResourceCounts[resource] >= building.buildingData.buildCost[resource]) {
-				playerResourceCounts[resource] = playerResourceCounts[resource] - building.buildingData.buildCost[resource];
+		Dictionary<ResourceType, int> buildCosts = building.GetBuildCost();
+		foreach(ResourceType resource in buildCosts.Keys) {
+			if(playerResourceCounts[resource] >= buildCosts[resource]) {
+				playerResourceCounts[resource] = playerResourceCounts[resource] - buildCosts[resource];
 			} else {
 				return false;
 			}
 		}
 
+		EmitSignal(SignalName.ResourcesChanged);
 		return true;
 	}
 }

@@ -9,6 +9,9 @@ public partial class IBuilding : Node2D {
 	
 	private int currentBuild;
 	private int currentHealth;
+
+	public Dictionary<ResourceType, int> buildCost;
+	public Dictionary<ResourceType, int> repairCost;
 	
 	public override void _Ready() {
 		currentHealth = buildingData.maxTurnsOfHealth;
@@ -35,5 +38,27 @@ public partial class IBuilding : Node2D {
 		{
 			status = BuildingState.DESTROYED;
 		}
+	}
+
+	public Dictionary<ResourceType, int> GetBuildCost() {
+		if(buildCost == null) {
+			buildCost = new();
+			for(int i = 0; i < buildingData.requiredResources.Count; i++) {
+				if(i < buildingData.buildCosts.Length) buildCost.Add(buildingData.requiredResources[i], buildingData.buildCosts[i]);
+			}
+		}
+
+		return buildCost;
+	}
+
+	public Dictionary<ResourceType, int> GetRepairCost() {
+		if(repairCost == null) {
+			repairCost = new();
+			for(int i = 0; i < buildingData.requiredResources.Count; i++) {
+				if(i < buildingData.repairCosts.Length) repairCost.Add(buildingData.requiredResources[i], buildingData.repairCosts[i]);
+			}
+		}
+
+		return repairCost;
 	}
 }
