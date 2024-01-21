@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_xf18y")
 maxTurnsOfHealth = 3
-buildCost = 0
-repairCost = 0
 type = 4
+electricityCostPerTurn = 0
+requiredResources = Array[int]([2])
+buildCosts = PackedInt32Array(20)
+repairCosts = PackedInt32Array(10)

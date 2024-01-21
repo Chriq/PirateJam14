@@ -50,6 +50,7 @@ public partial class PlayerTurnManager : Node {
 		Vector2 mousePosition = GetViewport().GetMousePosition();
 		Node2D newBuilding = MapManager.Instance.BuildOnTile(mousePosition, building);
 		playerBuildings.Add(newBuilding);
+		PlayerResources.Instance.SpendResourcesOnBuilding(newBuilding);
 		selectedItemToBuild = null;
 	}
 

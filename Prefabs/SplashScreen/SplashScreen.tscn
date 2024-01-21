@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4r5c28iri6j"]
+
+[ext_resource type="Script" path="res://Prefabs/SplashScreen/SplashScreen.cs" id="1_pkb7r"]
+[ext_resource type="PackedScene" uid="uid://c21ifyqrnx6lm" path="res://christian.tscn" id="2_vyggq"]
+[ext_resource type="Script" path="res://Prefabs/SplashScreen/FadeController.cs" id="3_iibf8"]
+[ext_resource type="Texture2D" uid="uid://bbaavwltgc6f6" path="res://Art/jam_full.png" id="4_j1gig"]
+
+[node name="SplashScreen" type="Node2D" node_paths=PackedStringArray("splashScreen", "fade", "timer")]
+script = ExtResource("1_pkb7r")
+splashScreen = NodePath("ColorRect")
+fade = NodePath("Fade")
+scene = ExtResource("2_vyggq")
+timer = NodePath("Timer")
+
+[node name="Fade" type="Node" parent="."]
+script = ExtResource("3_iibf8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="ScaredyCat" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_j1gig")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="Timer" to="." method="ContinueToGame"]

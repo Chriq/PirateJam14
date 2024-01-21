@@ -42,4 +42,17 @@ public partial class PlayerResources : Node {
 
 		EmitSignal(SignalName.ResourcesCollected);
 	}
+
+	public bool SpendResourcesOnBuilding(Node2D buildingObject) {
+		IBuilding building = (IBuilding) buildingObject;
+		foreach(ResourceType resource in building.buildingData.buildCost.Keys) {
+			if(playerResourceCounts[resource] >= building.buildingData.buildCost[resource]) {
+				playerResourceCounts[resource] = playerResourceCounts[resource] - building.buildingData.buildCost[resource];
+			} else {
+				return false;
+			}
+		}
+
+		return true;
+	}
 }

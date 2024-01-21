@@ -9,10 +9,10 @@ public partial class BuildCard : TextureButton {
 
 	public override void _Ready() {
 		//sprite.Texture = buildingInfo.sprite;
-		
+		/*
 		string info = "Build: " + buildingInfo.buildCost;
 		info += "\nRepair: " + buildingInfo.repairCost;
-		infoLabel.Text = info;
+		infoLabel.Text = info;*/
 
 		Pressed += OnClick;
 	}
