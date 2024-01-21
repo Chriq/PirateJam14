@@ -115,7 +115,7 @@ public partial class BlobTurnManager : Node
 						}
 					}
 					
-					if (node.occupierBlob == null
+					else if (node.occupierBlob == null
 						&&
 						(int) action > (int) BlobAction.Grow)
 					{
@@ -124,18 +124,19 @@ public partial class BlobTurnManager : Node
 					}
 				}
 				
-				GD.Print($"Blob Action : {action}");
 				// Execute blob action
 				switch(action)
 				{
 					case (BlobAction.Eat_Building):
+					case (BlobAction.Eat_Wall):
 					{
-						GD.Print("Blob Turn : Eat Building");
+						GD.Print("Blob Turn : Eat");
 						// TODO: Decrease Health Function
 						//MapManager.Instance.GetTile(target).occupierBuilding;
 						blob.SetCounter(blob_eat_counter);
 						break;
 					}
+					
 					case (BlobAction.Grow):
 					{
 						SpawnBlob(target);
