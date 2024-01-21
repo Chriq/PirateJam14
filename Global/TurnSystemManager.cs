@@ -11,15 +11,25 @@ public partial class TurnSystemManager : Node {
 		// Collect Resources
 		PlayerResources.Instance.CollectResources();
 		
-		// Update Constructions
 		foreach (IBuilding building in PlayerTurnManager.Instance.playerBuildings)
 		{
 			if (building.status == BuildingState.BUILDING)
+			{
+				// Update Constructions
 				building.Construct();
+				continue;
+			}
+			
+			// Execute Defense Actions
+			switch (building.buildingData.type)
+			{
+				case (BuildingType.LASER):
+				{
+					((DefenseLaser) building).Action();
+					break;
+				}
+			}
 		} 
-		
-		// Execute Defense Actions
-		
 	}
 
 	private void StartBlobTurn() {

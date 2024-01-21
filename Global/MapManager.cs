@@ -90,6 +90,11 @@ public partial class MapManager : Node {
 			map.Add(gridPosition, new HexNode(null, blob));
 		}
 	}
+	public void RemoveBlobFromMap(Vector2I gridPosition)
+	{
+		HexNode tile = map[gridPosition];
+		tile.occupierBlob = null;
+	}
 	
 	public void AddBuildingToMap(Vector2I gridPosition, Node2D building) {
 		HexNode tile;

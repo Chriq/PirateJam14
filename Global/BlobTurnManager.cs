@@ -72,6 +72,17 @@ public partial class BlobTurnManager : Node
 		// Insert
 		MapManager.Instance.SpawnNode.AddChild(blob);
 	}
+	public void DeleteBlob(Blob blob)
+	{		
+		// Map
+		MapManager.Instance.RemoveBlobFromMap(blob.position);
+		
+		// Blobs List
+		Blobs.Remove(blob);
+		
+		// Instance
+		blob.QueueFree();
+	}
 		
 	public void BlobTurn()
 	{

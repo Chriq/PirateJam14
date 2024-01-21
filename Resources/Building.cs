@@ -16,10 +16,17 @@ public enum ResourceType {
 }
 
 public enum BuildingType {
+	// Static Defenses
 	WALL,
-	LAZER,
+	
+	// Passive Defenses
 	LANDMINE,
+	
+	// Active Defenses 
+	FREEZERAY,
+	LASER,
 
+	// Resource Buildings
 	LUMBER_MILL,
 	POWER_PLANT
 }

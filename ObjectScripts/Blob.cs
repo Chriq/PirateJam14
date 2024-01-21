@@ -36,6 +36,7 @@ public partial class Blob : Node2D
 		}	
 		
 		// Decrement counter
-		return counter-- <= 0;
+		//return counter-- <= 0;
+		return false;
 	}
 }

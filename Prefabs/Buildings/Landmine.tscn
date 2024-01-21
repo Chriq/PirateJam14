@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcgb3hbbfcu2p"]
+[gd_scene load_steps=4 format=3 uid="uid://lm6tfsgvdtgy"]
 
 [ext_resource type="Script" path="res://Prefabs/Buildings/Wall.cs" id="1_vspef"]
 [ext_resource type="Resource" uid="uid://baomge1u844sk" path="res://Resources/Wall.tres" id="2_36ues"]

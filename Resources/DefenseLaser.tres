@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bkxs04vws1ui6"]
+
+[ext_resource type="Script" path="res://Resources/Building.cs" id="1_yn8hk"]
+
+[resource]
+script = ExtResource("1_yn8hk")
+maxTurnsOfHealth = 2
+buildCost = 10
+repairCost = 5
+type = 3

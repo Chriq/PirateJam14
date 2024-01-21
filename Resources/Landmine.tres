@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://djarog3gc7q81"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bfets37l0in22"]
 
 [ext_resource type="Script" path="res://Resources/Building.cs" id="1_2jhlw"]
 
@@ -7,4 +7,4 @@ script = ExtResource("1_2jhlw")
 maxTurnsOfHealth = 1
 buildCost = 10
 repairCost = 0
-type = 2
+type = 1
