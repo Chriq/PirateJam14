@@ -60,16 +60,21 @@ public partial class MapManager : Node {
 	// Grid Navigation Tools
 	public bool InBounds(Vector2I position)
 	{
-		// Hex Grid Distance
-		double dist_hex =
-			Math.Pow(position[0] - center[0], 2) + 
-			Math.Pow((position[1] - center[1]) * Math.Sqrt(3) / 2, 2);
+		float x = position.X - center.X;
+		float y = Math.Abs(position.Y - center.Y);
 		
-		return dist_hex < Math.Pow(bound,2);
+		if (center.Y % 2 == 1)
+			return
+				-bound + y/2 <= x && x <= bound - Math.Floor(y/2) &&
+				y <= bound; 
+		
+		return
+			-bound + Math.Floor(y/2) <= x && x <= bound - y/2 &&
+			y <= bound;
 	}
 	public Vector2I[] GetOffsets(Vector2I position)
 	{
-		return surround_offsets[position[1] % 2];
+		return surround_offsets[position.Y % 2];
 	}
 	
 	// Node-level Functions

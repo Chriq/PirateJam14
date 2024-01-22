@@ -26,7 +26,6 @@ public partial class PlayerTurnManager : Node {
 			playerBuildings.Add(building);
 
 			Vector2I gridPosition = MapManager.Instance.tilemap.LocalToMap(building.Position);
-			GD.Print(gridPosition);
 			MapManager.Instance.AddBuildingToMap(gridPosition, building);
 		}
 	}

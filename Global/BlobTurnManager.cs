@@ -84,10 +84,11 @@ public partial class BlobTurnManager : Node
 		// Instance
 		blob.QueueFree();
 	}
-		
+	
 	public void BlobTurn()
-	{
+	{		
 		int n_blobs = Blobs.Count;
+		
 		for (int blob_i = 0; blob_i < n_blobs; blob_i++)
 		{
 			Blob blob = Blobs[blob_i];
@@ -111,7 +112,7 @@ public partial class BlobTurnManager : Node
 						
 					HexNode node = MapManager.Instance.GetTile(pos);
 					
-					if (node.occupierBuilding != null)
+					if (node.occupierBuilding != null && node.occupierBuilding.currentHealth > 0)
 					{
 						IBuilding building = (IBuilding) node.occupierBuilding;
 						

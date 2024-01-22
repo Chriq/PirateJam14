@@ -10,7 +10,7 @@ public partial class IBuilding : Node2D {
 	public BuildingState status { get; private set; }
 	
 	private int currentBuild;
-	private int currentHealth;
+	public int currentHealth { get; private set; }
 	
 	public override void _Ready() {
 		ConstructionSprite = new Sprite2D();
