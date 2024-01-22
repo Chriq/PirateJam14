@@ -106,6 +106,9 @@ public partial class BlobTurnManager : Node
 				{
 					Vector2I pos = offsets[(i + rand) % len] + blob.position;
 					
+					if (!MapManager.Instance.InBounds(pos))
+						continue;
+						
 					HexNode node = MapManager.Instance.GetTile(pos);
 					
 					if (node.occupierBuilding != null)
@@ -137,6 +140,7 @@ public partial class BlobTurnManager : Node
 				}
 				
 				GD.Print($"BlobTurn:Blob: [{blob.position}] Action [{action}]");
+				
 				// Execute blob action
 				switch(action)
 				{
@@ -160,15 +164,19 @@ public partial class BlobTurnManager : Node
 						for (int i = 0; i < 10; i++)
 						{
 							target = new Vector2I(
-								(int) (GD.Randi() % MapManager.Instance.grid_x), 
-								(int) (GD.Randi() % MapManager.Instance.grid_y)
+								(int) (GD.Randi() % (2 * MapManager.Instance.bound)), 
+								(int) (GD.Randi() % (2 * MapManager.Instance.bound))
 								);
 							
-							if (MapManager.Instance.GetTile(target).occupierBlob == null)
+							if (MapManager.Instance.InBounds(target)
+								&&
+								MapManager.Instance.GetTile(target).occupierBlob == null)
+							{
 								SpawnBlob(target);
+								blob.SetCounter(blob_launch_counter);
 								break;
+							}
 						}
-						blob.SetCounter(blob_launch_counter);
 						break;
 					}
 				}

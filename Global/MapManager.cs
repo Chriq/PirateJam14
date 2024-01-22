@@ -25,10 +25,8 @@ public partial class MapManager : Node {
 	[Export] public TileMap tilemap;
 	
 	[ExportGroup("Grid Layout")]
-	[Export] public int square_size = 60;
-	[Export] public double bound = 6;
-	[Export] public int grid_x = 12;
-	[Export] public int grid_y = 12;
+	[Export] public int bound = 6;
+	[Export] public Vector2I center = new Vector2I(4,4);
 	
 	public Dictionary<Vector2I, HexNode> map = new();
 	
@@ -59,6 +57,22 @@ public partial class MapManager : Node {
 			Instance = this;
 	}
 	
+	// Grid Navigation Tools
+	public bool InBounds(Vector2I position)
+	{
+		// Hex Grid Distance
+		double dist_hex =
+			Math.Pow(position[0] - center[0], 2) + 
+			Math.Pow((position[1] - center[1]) * Math.Sqrt(3) / 2, 2);
+		
+		return dist_hex < Math.Pow(bound,2);
+	}
+	public Vector2I[] GetOffsets(Vector2I position)
+	{
+		return surround_offsets[position[1] % 2];
+	}
+	
+	// Node-level Functions
 	public HexNode GetTile(Vector2I position)
 	{
 		if (map.ContainsKey(position))
@@ -70,9 +84,13 @@ public partial class MapManager : Node {
 		
 		return node;
 	}
-	public Vector2I[] GetOffsets(Vector2I position)
+	public void SetTile(Vector2I position, IBuilding building = null, Blob blob = null)
 	{
-		return surround_offsets[position[1] % 2];
+		if (map.ContainsKey(position))
+			map[position] = new HexNode(building, blob);
+		
+		else
+			map.Add(position, new HexNode(building, blob));
 	}
 	
 	public void DeleteBuilding(Vector2I position)
@@ -104,30 +122,39 @@ public partial class MapManager : Node {
 	}
 
 	public void AddBlobToMap(Vector2I gridPosition, Blob blob) {
-		HexNode tile;
-		if(map.TryGetValue(gridPosition, out tile)) {
-			tile.occupierBlob = blob;
-			map[gridPosition] = tile;
-		} else {
-			map.Add(gridPosition, new HexNode(null, blob));
-		}
+		IBuilding building = GetTile(gridPosition).occupierBuilding;
+		
+		SetTile(gridPosition, building, blob);
+		
+		//HexNode tile;
+		//if(map.TryGetValue(gridPosition, out tile)) {
+			//tile.occupierBlob = blob;
+			//map[gridPosition] = tile;
+		//} else {
+			//map.Add(gridPosition, new HexNode(null, blob));
+		//}
 	}
 	public void RemoveBlobFromMap(Vector2I gridPosition)
 	{
-		HexNode tile = map[gridPosition];
+		IBuilding building = GetTile(gridPosition).occupierBuilding;
 		
-		SpawnNode.RemoveChild(tile.occupierBlob);
+		SetTile(gridPosition, building);
 		
-		tile.occupierBlob = null;
+		//HexNode tile = GetTile(gridPosition);
+		//
+		//SpawnNode.RemoveChild(tile.occupierBlob);
+		//
+		//tile.occupierBlob = null;
 	}
 	
 	public void AddBuildingToMap(Vector2I gridPosition, IBuilding building) {
-		HexNode tile;
-		if(map.TryGetValue(gridPosition, out tile)) {
-			tile.occupierBuilding = building;
-			map[gridPosition] = tile;
-		} else {
-			map.Add(gridPosition, new HexNode(building, null));
-		}
+		SetTile(gridPosition, building);
+		//HexNode tile;
+		//if(map.TryGetValue(gridPosition, out tile)) {
+			//tile.occupierBuilding = building;
+			//map[gridPosition] = tile;
+		//} else {
+			//map.Add(gridPosition, new HexNode(building, null));
+		//}
 	}
 }
