@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c21ifyqrnx6lm"]
+[gd_scene load_steps=11 format=3 uid="uid://c21ifyqrnx6lm"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_lkltx"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_2tms1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Global/PlayerResources.cs" id="5_vq40s"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="6_30gxn"]
 [ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="7_xj00j"]
+[ext_resource type="PackedScene" uid="uid://ce2x83dh12ynj" path="res://Prefabs/CustomCursor/Cursor.tscn" id="8_0vacj"]
 [ext_resource type="PackedScene" uid="uid://dxxn7x4byd2hx" path="res://Prefabs/Buildings/PowerPlant.tscn" id="9_1qk15"]
 
 [node name="Scene" type="Node2D"]
@@ -37,6 +38,8 @@ script = ExtResource("5_2ksb3")
 
 [node name="PowerPlant" parent="InitialBuildings" instance=ExtResource("9_1qk15")]
 position = Vector2(176, 16)
+
+[node name="Cursor" parent="." instance=ExtResource("8_0vacj")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("6_30gxn")

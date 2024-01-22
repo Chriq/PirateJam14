@@ -41,12 +41,38 @@ public partial class PlayerResources : Node {
 		EmitSignal(SignalName.ResourcesChanged);
 	}
 
+	public bool CanAffordBuilding(Building building) {
+		Dictionary<ResourceType, int> buildCosts = building.GetBuildCost();
+		foreach(ResourceType resource in buildCosts.Keys) {
+			if(playerResourceCounts[resource] < buildCosts[resource]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	public bool SpendResourcesOnBuilding(Node2D buildingObject) {
 		IBuilding building = (IBuilding) buildingObject;
 		Dictionary<ResourceType, int> buildCosts = building.GetBuildCost();
 		foreach(ResourceType resource in buildCosts.Keys) {
 			if(playerResourceCounts[resource] >= buildCosts[resource]) {
 				playerResourceCounts[resource] = playerResourceCounts[resource] - buildCosts[resource];
+			} else {
+				return false;
+			}
+		}
+
+		EmitSignal(SignalName.ResourcesChanged);
+		return true;
+	}
+
+	public bool SpendResourcesRepairingBuilding(Node2D buildingObject) {
+		IBuilding building = (IBuilding) buildingObject;
+		Dictionary<ResourceType, int> repairCosts = building.GetRepairCost();
+		foreach(ResourceType resource in repairCosts.Keys) {
+			if(playerResourceCounts[resource] >= repairCosts[resource]) {
+				playerResourceCounts[resource] = playerResourceCounts[resource] - repairCosts[resource];
 			} else {
 				return false;
 			}

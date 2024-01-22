@@ -10,7 +10,7 @@ public partial class IBuilding : Node2D {
 	public BuildingState status { get; private set; }
 	
 	private int currentBuild;
-	private int currentHealth;
+	public int currentHealth;
 
 	public Dictionary<ResourceType, int> buildCost;
 	public Dictionary<ResourceType, int> repairCost;

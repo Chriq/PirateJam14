@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Collections.Generic;
 
 public partial class Building : Resource
 {
@@ -9,6 +10,31 @@ public partial class Building : Resource
 	[Export] public Array<ResourceType> requiredResources;
 	[Export] public int[] buildCosts;
 	[Export] public int[] repairCosts;
+
+	public System.Collections.Generic.Dictionary<ResourceType, int> buildCost;
+	public System.Collections.Generic.Dictionary<ResourceType, int> repairCost;
+
+	public System.Collections.Generic.Dictionary<ResourceType, int> GetBuildCost() {
+		if(buildCost == null) {
+			buildCost = new();
+			for(int i = 0; i < requiredResources.Count; i++) {
+				if(i < buildCosts.Length) buildCost.Add(requiredResources[i], buildCosts[i]);
+			}
+		}
+
+		return buildCost;
+	}
+
+	public System.Collections.Generic.Dictionary<ResourceType, int> GetRepairCost() {
+		if(repairCost == null) {
+			repairCost = new();
+			for(int i = 0; i < requiredResources.Count; i++) {
+				if(i < repairCosts.Length) repairCost.Add(requiredResources[i], repairCosts[i]);
+			}
+		}
+
+		return repairCost;
+	}
 }
 
 public enum ResourceType {

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="3_6xel8"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="5_7jopp"]
 
-[node name="Scene" type="Node2D"]
+[node name="Scene2" type="Node2D"]
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("1_2cm81")

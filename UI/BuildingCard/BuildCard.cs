@@ -1,7 +1,7 @@
 using Godot;
 
 public partial class BuildCard : TextureButton {
-	[Export] private Building buildingInfo;
+	[Export] public Building buildingInfo;
 	[Export] private PackedScene buildingPrefab;
 
 	[Export] Sprite2D sprite;
@@ -18,6 +18,9 @@ public partial class BuildCard : TextureButton {
 	}
 
 	public void OnClick() {
-		PlayerTurnManager.Instance.SelectItemToBuild(buildingPrefab);
+		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
+		MapManager.Instance.BuildOnTile(selectedHexNode, buildingPrefab);
+
+		//PlayerTurnManager.Instance.SelectItemToBuild(buildingPrefab);
 	}
 }

@@ -10,6 +10,8 @@ public partial class PlayerTurnManager : Node {
 	// Building nodes 
 	[Export] public PackedScene[] BuildingScenes;
 	private PackedScene selectedItemToBuild;
+	public HexNode selectedHexNode;
+	public Vector2I selectedTileIndex;
 
 	// List of all active building
 	public List<Node2D> playerBuildings = new();
@@ -17,6 +19,8 @@ public partial class PlayerTurnManager : Node {
 
 	[Signal]
 	public delegate void PlayerTurnEndedEventHandler();
+	[Signal]
+	public delegate void HexNodeSelectedEventHandler();
 	
 	public override void _Ready() {
 		if(Instance == null)
@@ -32,22 +36,23 @@ public partial class PlayerTurnManager : Node {
 	}
 
 	public override void _Process(double delta) {
-		if(Input.IsMouseButtonPressed(MouseButton.Left) && selectedItemToBuild != null) {
-			Build(selectedItemToBuild);
-		}
-
-		if(Input.IsMouseButtonPressed(MouseButton.Right)) {
-			selectedItemToBuild = null;
+		Vector2I mousegridPosition = Cursor.Instance.GetMouseGridPosition();
+		if(Input.IsMouseButtonPressed(MouseButton.Left) && MapManager.Instance.InBounds(mousegridPosition)) {
+			//Build(selectedItemToBuild);
+			selectedHexNode = default;
+			selectedTileIndex = mousegridPosition;
+			MapManager.Instance.map.TryGetValue(mousegridPosition, out selectedHexNode);
+			EmitSignal(SignalName.HexNodeSelected);
 		}
 	}
 
 	public void SelectItemToBuild(PackedScene building) {
-		selectedItemToBuild = building;
+		selectedItemToBuild = building; 
 	}
 
 	public void Build(PackedScene building) {
 		Vector2 mousePosition = GetViewport().GetMousePosition();
-		Node2D newBuilding = MapManager.Instance.BuildOnTile(mousePosition, building);
+		Node2D newBuilding = MapManager.Instance.BuildOnTile(selectedHexNode, building);
 		if(newBuilding != null) {
 			playerBuildings.Add(newBuilding);
 		}

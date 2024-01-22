@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce2x83dh12ynj"]
+
+[ext_resource type="Script" path="res://Prefabs/CustomCursor/Cursor.cs" id="1_fr512"]
+[ext_resource type="Texture2D" uid="uid://b05g0u0lrx642" path="res://Art/Cursor.png" id="2_s6c30"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_fr512")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1000
+texture = ExtResource("2_s6c30")

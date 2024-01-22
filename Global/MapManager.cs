@@ -107,10 +107,12 @@ public partial class MapManager : Node {
 		building.QueueFree();
 	}
 	
-	public Node2D BuildOnTile(Vector2 mousePosition, PackedScene building) {
-		Vector2I cell = tilemap.LocalToMap(mousePosition);
+	public Node2D BuildOnTile(HexNode tile, PackedScene building) {
+		Vector2I cell = PlayerTurnManager.Instance.selectedTileIndex;
 		IBuilding build = (IBuilding) (Node2D) building.Instantiate();
-		if(PlayerResources.Instance.SpendResourcesOnBuilding(build)) {
+		bool sufficientResources = PlayerResources.Instance.SpendResourcesOnBuilding(build);
+
+		if(sufficientResources) {
 			build.Position = tilemap.MapToLocal(cell);
 			SpawnNode.AddChild(build);
 			AddBuildingToMap(cell, build);
@@ -119,6 +121,11 @@ public partial class MapManager : Node {
 		}
 		
 		return null;
+	}
+
+	public void RepairBuildingOnTile(HexNode tile) {
+		PlayerResources.Instance.SpendResourcesRepairingBuilding(tile.occupierBuilding);
+		tile.occupierBuilding.currentHealth++;
 	}
 
 	public void AddBlobToMap(Vector2I gridPosition, Blob blob) {
