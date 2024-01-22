@@ -5,9 +5,10 @@ public partial class BuildingPanel : Node2D {
 	[Export] private Label electricityLabel;
 	[Export] private Label woodLabel;
 	[Export] private Label steelLabel;
+	[Export] private Label oilLabel;
 
 	[Export] private Node2D buildCardsContainer;
-	[Export] private TextureButton repairButton;
+	[Export] private Button repairButton;
 
     public override void _Ready() {
         PlayerResources.Instance.ResourcesChanged += UpdateResourceUI;

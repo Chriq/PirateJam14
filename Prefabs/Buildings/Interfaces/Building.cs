@@ -10,6 +10,7 @@ public partial class Building : Resource
 	[Export] public Array<ResourceType> requiredResources;
 	[Export] public int[] buildCosts;
 	[Export] public int[] repairCosts;
+	[Export] public string description;
 
 	public System.Collections.Generic.Dictionary<ResourceType, int> buildCost;
 	public System.Collections.Generic.Dictionary<ResourceType, int> repairCost;
@@ -40,7 +41,8 @@ public partial class Building : Resource
 public enum ResourceType {
 	WOOD,
 	ELECTRICITY,
-	STEEL
+	STEEL,
+	OIL
 }
 
 public enum BuildingType {
@@ -56,7 +58,9 @@ public enum BuildingType {
 
 	// Resource Buildings
 	LUMBER_MILL,
-	POWER_PLANT
+	POWER_PLANT,
+	STEEL_MILL,
+	OIL_REFINERY
 }
 
 public enum BuildingState {

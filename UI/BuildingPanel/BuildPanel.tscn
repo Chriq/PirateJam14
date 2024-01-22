@@ -1,46 +1,118 @@
-[gd_scene load_steps=7 format=3 uid="uid://buskvgmuj20vs"]
+[gd_scene load_steps=15 format=3 uid="uid://buskvgmuj20vs"]
 
 [ext_resource type="Script" path="res://UI/BuildingPanel/BuildingPanel.cs" id="1_7t8jj"]
 [ext_resource type="PackedScene" uid="uid://dqiltdwov8ham" path="res://UI/BuildingCard/BuildingCard.tscn" id="1_pd58n"]
-[ext_resource type="Resource" uid="uid://baomge1u844sk" path="res://Resources/Wall.tres" id="2_estob"]
+[ext_resource type="Resource" uid="uid://baomge1u844sk" path="res://Prefabs/Buildings/Resources/Wall.tres" id="2_estob"]
 [ext_resource type="PackedScene" uid="uid://bexg2dp4mechb" path="res://Prefabs/Buildings/Wall.tscn" id="3_ihbms"]
 [ext_resource type="Texture2D" uid="uid://clb80giyncjqv" path="res://Art/UI.png" id="4_5cyd0"]
+[ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="4_ikv4b"]
 [ext_resource type="Script" path="res://UI/EndPlayerTurn.cs" id="4_sndm3"]
+[ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="6_uoqbe"]
+[ext_resource type="Resource" uid="uid://bfets37l0in22" path="res://Prefabs/Buildings/Resources/Landmine.tres" id="7_rr4tw"]
+[ext_resource type="PackedScene" uid="uid://lm6tfsgvdtgy" path="res://Prefabs/Buildings/Landmine.tscn" id="8_kubxv"]
+[ext_resource type="Resource" uid="uid://bkxs04vws1ui6" path="res://Prefabs/Buildings/Resources/DefenseLaser.tres" id="9_fyju1"]
+[ext_resource type="PackedScene" uid="uid://duytjno6gtnhy" path="res://Prefabs/Buildings/DefenseLaser.tscn" id="10_4t2wv"]
+[ext_resource type="Resource" uid="uid://d2upf2w8inp5f" path="res://Prefabs/Buildings/Resources/DefenseFreezeRay.tres" id="11_4vugo"]
+[ext_resource type="PackedScene" uid="uid://bkoxatwx0wkr8" path="res://Prefabs/Buildings/DefenseFreezeRay.tscn" id="12_3m8k3"]
 
-[node name="BuildPanel" type="Node2D" node_paths=PackedStringArray("electricityLabel", "woodLabel", "steelLabel", "buildCardsContainer", "repairButton")]
+[node name="BuildPanel" type="Node2D" node_paths=PackedStringArray("electricityLabel", "woodLabel", "steelLabel", "oilLabel", "buildCardsContainer", "repairButton")]
 script = ExtResource("1_7t8jj")
 electricityLabel = NodePath("ResourceLabel/Electricity/Label")
 woodLabel = NodePath("ResourceLabel/Wood/Label")
 steelLabel = NodePath("ResourceLabel/Steel/Label")
+oilLabel = NodePath("ResourceLabel/Oil/Label")
 buildCardsContainer = NodePath("BuildCards")
 repairButton = NodePath("Repair")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 567.0
+[node name="PanelBackground" type="NinePatchRect" parent="."]
+offset_left = 468.0
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.364706, 0.364706, 0.364706, 1)
+texture = ExtResource("4_5cyd0")
+region_rect = Rect2(0, 16, 16, 16)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="BuildCards" type="Node2D" parent="."]
+position = Vector2(71, 0)
 
 [node name="Wall" parent="BuildCards" instance=ExtResource("1_pd58n")]
-offset_left = 572.0
-offset_top = 7.0
-offset_right = 572.0
-offset_bottom = 7.0
+offset_left = 401.0
+offset_top = 5.0
+offset_right = 481.0
+offset_bottom = 124.0
 buildingInfo = ExtResource("2_estob")
 buildingPrefab = ExtResource("3_ihbms")
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildCards/Wall"]
+position = Vector2(39, 20)
+texture = ExtResource("4_ikv4b")
+region_enabled = true
+region_rect = Rect2(32, 64, 32, 32)
+
+[node name="Mine" parent="BuildCards" instance=ExtResource("1_pd58n")]
+offset_left = 485.0
+offset_top = 5.0
+offset_right = 565.0
+offset_bottom = 124.0
+buildingInfo = ExtResource("7_rr4tw")
+buildingPrefab = ExtResource("8_kubxv")
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildCards/Mine"]
+position = Vector2(39, 20)
+texture = ExtResource("4_ikv4b")
+region_enabled = true
+region_rect = Rect2(32, 96, 32, 32)
+
+[node name="Laser" parent="BuildCards" instance=ExtResource("1_pd58n")]
+offset_left = 401.0
+offset_top = 129.0
+offset_right = 481.0
+offset_bottom = 248.0
+buildingInfo = ExtResource("9_fyju1")
+buildingPrefab = ExtResource("10_4t2wv")
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildCards/Laser"]
+position = Vector2(39, 20)
+texture = ExtResource("4_ikv4b")
+region_enabled = true
+region_rect = Rect2(64, 128, 32, 33)
+
+[node name="Freeze" parent="BuildCards" instance=ExtResource("1_pd58n")]
+offset_left = 485.0
+offset_top = 129.0
+offset_right = 565.0
+offset_bottom = 248.0
+buildingInfo = ExtResource("11_4vugo")
+buildingPrefab = ExtResource("12_3m8k3")
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildCards/Freeze"]
+position = Vector2(39, 20)
+texture = ExtResource("4_ikv4b")
+region_enabled = true
+region_rect = Rect2(96, 128, 32, 33)
 
 [node name="ResourceLabel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 567.0
-offset_top = 243.0
-offset_right = 640.0
-offset_bottom = 300.0
+offset_left = 470.0
+offset_top = 277.0
+offset_right = 637.0
+offset_bottom = 298.0
+
+[node name="Label" type="Label" parent="ResourceLabel"]
+layout_mode = 0
+offset_top = -11.0
+offset_right = 168.0
+offset_bottom = 2.0
+theme_override_font_sizes/font_size = 8
+text = "My Resources"
+horizontal_alignment = 1
 
 [node name="Electricity" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(11, 9)
+position = Vector2(8, 9)
 texture = ExtResource("4_5cyd0")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
@@ -53,7 +125,7 @@ offset_bottom = 11.0
 text = "0"
 
 [node name="Wood" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(11, 29)
+position = Vector2(52, 10)
 texture = ExtResource("4_5cyd0")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 16)
@@ -66,7 +138,7 @@ offset_bottom = 11.0
 text = "0"
 
 [node name="Steel" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(11, 47)
+position = Vector2(95, 10)
 texture = ExtResource("4_5cyd0")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
@@ -78,31 +150,34 @@ offset_right = 58.0
 offset_bottom = 11.0
 text = "0"
 
-[node name="Repair" type="TextureButton" parent="."]
-offset_left = 565.0
-offset_top = 299.0
-offset_right = 630.0
-offset_bottom = 325.0
-script = ExtResource("4_sndm3")
+[node name="Oil" type="Sprite2D" parent="ResourceLabel"]
+position = Vector2(137, 10)
+texture = ExtResource("4_5cyd0")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
 
-[node name="Label" type="Label" parent="Repair"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Label" type="Label" parent="ResourceLabel/Oil"]
+offset_left = 9.0
+offset_top = -12.0
+offset_right = 58.0
+offset_bottom = 11.0
+text = "0"
+
+[node name="Repair" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 300.0
+offset_right = 636.0
+offset_bottom = 327.0
+theme = ExtResource("6_uoqbe")
 text = "Repair"
 
-[node name="EndTurn" type="TextureButton" parent="."]
-offset_left = 565.0
-offset_top = 328.0
-offset_right = 630.0
-offset_bottom = 354.0
+[node name="EndTurn" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 329.0
+offset_right = 636.0
+offset_bottom = 356.0
+theme = ExtResource("6_uoqbe")
+text = "End Turn"
 script = ExtResource("4_sndm3")
 
-[node name="Label" type="Label" parent="EndTurn"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "End Turn"
-
-[connection signal="pressed" from="Repair" to="Repair" method="OnClick"]
 [connection signal="pressed" from="EndTurn" to="EndTurn" method="OnClick"]

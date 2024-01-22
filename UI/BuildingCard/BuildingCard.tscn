@@ -1,27 +1,92 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqiltdwov8ham"]
+[gd_scene load_steps=4 format=3 uid="uid://dqiltdwov8ham"]
 
+[ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="1_ogeyx"]
 [ext_resource type="Script" path="res://UI/BuildingCard/BuildCard.cs" id="1_paib2"]
+[ext_resource type="Texture2D" uid="uid://clb80giyncjqv" path="res://Art/UI.png" id="4_uov10"]
 
-[node name="BuildingCard" type="TextureButton" node_paths=PackedStringArray("sprite", "infoLabel")]
-offset_right = 64.0
-offset_bottom = 88.0
+[node name="BuildingCard" type="Button" node_paths=PackedStringArray("nameLabel", "descriptionLabel", "electricLabel", "woodLabel", "steelLabel", "oilLabel")]
+offset_right = 80.0
+offset_bottom = 119.0
+theme = ExtResource("1_ogeyx")
 script = ExtResource("1_paib2")
-sprite = NodePath("Image")
-infoLabel = NodePath("Info")
+nameLabel = NodePath("Name")
+descriptionLabel = NodePath("Description")
+electricLabel = NodePath("VFlowContainer/HFlowContainer/Label2")
+woodLabel = NodePath("VFlowContainer/HFlowContainer/Label")
+steelLabel = NodePath("VFlowContainer/HFlowContainer/Label3")
+oilLabel = NodePath("VFlowContainer/HFlowContainer/Label4")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Name" type="Label" parent="."]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 88.0
-mouse_filter = 1
+offset_left = 2.0
+offset_top = 34.0
+offset_right = 78.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Wall"
+horizontal_alignment = 1
 
-[node name="Image" type="Sprite2D" parent="."]
-position = Vector2(4, 4)
-centered = false
+[node name="Description" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 51.0
+offset_right = 78.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Wall"
+horizontal_alignment = 1
 
-[node name="Info" type="Label" parent="."]
-layout_mode = 0
-offset_top = 37.0
-offset_right = 64.0
+[node name="Cost" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 70.0
+offset_right = 80.0
 offset_bottom = 88.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Cost
+"
+horizontal_alignment = 1
+
+[node name="VFlowContainer" type="VFlowContainer" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 81.0
+offset_right = 71.0
+offset_bottom = 117.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VFlowContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+texture = ExtResource("4_uov10")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VFlowContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VFlowContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+
+[node name="Label" type="Label" parent="VFlowContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+
+[node name="Label3" type="Label" parent="VFlowContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "10
+"
+
+[node name="Label4" type="Label" parent="VFlowContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "10
+"

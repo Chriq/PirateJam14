@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
-public partial class PowerPlant : IResourceBuilding {
+public partial class OilRefinery : IResourceBuilding {
 	public override Dictionary<ResourceType, int> YieldResources() {
 		Dictionary<ResourceType, int> yields = new Dictionary<ResourceType, int> {
-			{ ResourceType.ELECTRICITY, 5 }
+			{ ResourceType.OIL, yieldAmt }
 		};
 
 		return yields;

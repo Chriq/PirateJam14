@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://baomge1u844sk"]
 
-[ext_resource type="Script" path="res://Resources/Building.cs" id="1_lxfbr"]
+[ext_resource type="Script" path="res://Prefabs/Buildings/Interfaces/Building.cs" id="1_lxfbr"]
 
 [resource]
 script = ExtResource("1_lxfbr")
@@ -10,3 +10,4 @@ electricityCostPerTurn = 0
 requiredResources = Array[int]([0])
 buildCosts = PackedInt32Array(5)
 repairCosts = PackedInt32Array()
+description = "Stops blobs from expanding until destroyed."

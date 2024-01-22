@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bkxs04vws1ui6"]
+
+[ext_resource type="Script" path="res://Prefabs/Buildings/Interfaces/Building.cs" id="1_yn8hk"]
+
+[resource]
+script = ExtResource("1_yn8hk")
+maxTurnsOfHealth = 2
+type = 3
+electricityCostPerTurn = 0
+requiredResources = null
+buildCosts = PackedInt32Array()
+repairCosts = PackedInt32Array()
+description = "Eliminates the closest blob each turn."

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://bfets37l0in22"]
 
-[ext_resource type="Script" path="res://Resources/Building.cs" id="1_2jhlw"]
+[ext_resource type="Script" path="res://Prefabs/Buildings/Interfaces/Building.cs" id="1_2jhlw"]
 
 [resource]
 script = ExtResource("1_2jhlw")
@@ -10,3 +10,4 @@ electricityCostPerTurn = 0
 requiredResources = null
 buildCosts = PackedInt32Array()
 repairCosts = PackedInt32Array()
+description = "Detonates when blob enters tile. Destoys surrounding blobs and buildings."

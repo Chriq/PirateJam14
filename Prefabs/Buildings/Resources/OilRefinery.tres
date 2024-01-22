@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bb4xbx1hupq5e"]
+
+[ext_resource type="Script" path="res://Prefabs/Buildings/Interfaces/Building.cs" id="1_xkbx6"]
+
+[resource]
+script = ExtResource("1_xkbx6")
+maxTurnsOfHealth = 3
+type = 7
+electricityCostPerTurn = 5
+requiredResources = Array[int]([2, 3])
+buildCosts = PackedInt32Array()
+repairCosts = PackedInt32Array(5, 10)
