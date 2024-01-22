@@ -1,12 +1,14 @@
 using Godot;
-using System;
+using Godot.Collections;
 
 public partial class Building : Resource
 {
 	[Export] public int maxTurnsOfHealth = 3;
-	[Export] public int buildCost;
-	[Export] public int repairCost;
 	[Export] public BuildingType type;
+	[Export] public int electricityCostPerTurn;
+	[Export] public Array<ResourceType> requiredResources;
+	[Export] public int[] buildCosts;
+	[Export] public int[] repairCosts;
 }
 
 public enum ResourceType {

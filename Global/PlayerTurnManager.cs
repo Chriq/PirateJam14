@@ -48,7 +48,10 @@ public partial class PlayerTurnManager : Node {
 	public void Build(PackedScene building) {
 		Vector2 mousePosition = GetViewport().GetMousePosition();
 		Node2D newBuilding = MapManager.Instance.BuildOnTile(mousePosition, building);
-		playerBuildings.Add(newBuilding);
+		if(newBuilding != null) {
+			playerBuildings.Add(newBuilding);
+		}
+		
 		selectedItemToBuild = null;
 	}
 
