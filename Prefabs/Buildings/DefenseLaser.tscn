@@ -1,12 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://duytjno6gtnhy"]
 
-[ext_resource type="Texture2D" uid="uid://4ol7qj6ms2c5" path="res://Art/templazer.png" id="1_2s66n"]
 [ext_resource type="Script" path="res://Prefabs/Buildings/Scripts/DefenseLaser.cs" id="1_ykgn4"]
 [ext_resource type="Resource" uid="uid://bkxs04vws1ui6" path="res://Prefabs/Buildings/Resources/DefenseLaser.tres" id="2_5f4ms"]
+[ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="3_ql107"]
 
 [node name="DefenseLaser" type="Node2D"]
 script = ExtResource("1_ykgn4")
 buildingData = ExtResource("2_5f4ms")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2s66n")
+texture = ExtResource("3_ql107")
+region_enabled = true
+region_rect = Rect2(64, 128, 32, 32)
