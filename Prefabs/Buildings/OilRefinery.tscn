@@ -11,4 +11,4 @@ buildingData = ExtResource("2_j28jv")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_ih3yr")
 region_enabled = true
-region_rect = Rect2(32, 128, 32, 32)
+region_rect = Rect2(0, 128, 32, 32)

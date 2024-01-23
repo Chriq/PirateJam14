@@ -42,6 +42,7 @@ public partial class PlayerTurnManager : Node {
 			selectedHexNode = default;
 			selectedTileIndex = mousegridPosition;
 			MapManager.Instance.map.TryGetValue(mousegridPosition, out selectedHexNode);
+			Cursor.Instance.HighlightSeectedTile();
 			EmitSignal(SignalName.HexNodeSelected);
 		}
 	}

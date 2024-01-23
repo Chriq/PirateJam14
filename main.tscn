@@ -1,0 +1,131 @@
+[gd_scene load_steps=14 format=3 uid="uid://c21ifyqrnx6lm"]
+
+[ext_resource type="Script" path="res://Global/MapManager.cs" id="1_ge0yb"]
+[ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_03bd7"]
+[ext_resource type="Script" path="res://Global/BlobTurnManager.cs" id="3_2kcx5"]
+[ext_resource type="PackedScene" uid="uid://db2ekmc1osqj1" path="res://Prefabs/Blob.tscn" id="4_sj62i"]
+[ext_resource type="Script" path="res://Global/PlayerResources.cs" id="5_0g7ox"]
+[ext_resource type="Script" path="res://Global/TurnSystemManager.cs" id="6_55v23"]
+[ext_resource type="PackedScene" uid="uid://dxxn7x4byd2hx" path="res://Prefabs/Buildings/PowerPlant.tscn" id="7_hfin2"]
+[ext_resource type="PackedScene" uid="uid://ce2x83dh12ynj" path="res://Prefabs/CustomCursor/Cursor.tscn" id="8_oioih"]
+[ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="9_bc8r4"]
+[ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="10_uknfv"]
+[ext_resource type="PackedScene" uid="uid://cjjoe5bwcivdp" path="res://Prefabs/Buildings/LumberMill.tscn" id="11_rjf6c"]
+[ext_resource type="PackedScene" uid="uid://cr0t2li6gqsil" path="res://Prefabs/Buildings/SteelMill.tscn" id="12_3aic2"]
+[ext_resource type="PackedScene" uid="uid://pu5v4psnk8lk" path="res://Prefabs/Buildings/OilRefinery.tscn" id="13_sid4y"]
+
+[node name="Scene" type="Node2D"]
+
+[node name="Singletons" type="Node" parent="."]
+
+[node name="MapManager" type="Node" parent="Singletons" node_paths=PackedStringArray("SpawnNode", "tilemap")]
+script = ExtResource("1_ge0yb")
+SpawnNode = NodePath("../../SpawnNode")
+tilemap = NodePath("../../TileMap")
+
+[node name="PlayerTurnManager" type="Node" parent="Singletons" node_paths=PackedStringArray("initialBuildingContainer")]
+script = ExtResource("2_03bd7")
+initialBuildingContainer = NodePath("../../InitialBuildings")
+
+[node name="BlobTurnManager" type="Node" parent="Singletons"]
+script = ExtResource("3_2kcx5")
+BlobScene = ExtResource("4_sj62i")
+
+[node name="PlayerResources" type="Node" parent="Singletons"]
+script = ExtResource("5_0g7ox")
+
+[node name="TurnSystemManager" type="Node" parent="Singletons"]
+script = ExtResource("6_55v23")
+
+[node name="InitialBuildings" type="Node" parent="."]
+
+[node name="PowerPlant" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(144, 64)
+
+[node name="LumberMill" parent="InitialBuildings" instance=ExtResource("11_rjf6c")]
+position = Vector2(176, 64)
+
+[node name="SteelMill" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(160, 88)
+
+[node name="OilRefinery" parent="InitialBuildings" instance=ExtResource("13_sid4y")]
+position = Vector2(240, 64)
+
+[node name="PowerPlant2" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(272, 64)
+
+[node name="SteelMill2" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(256, 88)
+
+[node name="LumberMill2" parent="InitialBuildings" instance=ExtResource("11_rjf6c")]
+position = Vector2(224, 88)
+
+[node name="PowerPlant3" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(192, 136)
+
+[node name="PowerPlant4" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(208, 160)
+
+[node name="LumberMill3" parent="InitialBuildings" instance=ExtResource("11_rjf6c")]
+position = Vector2(176, 160)
+
+[node name="OilRefinery2" parent="InitialBuildings" instance=ExtResource("13_sid4y")]
+position = Vector2(288, 136)
+
+[node name="OilRefinery3" parent="InitialBuildings" instance=ExtResource("13_sid4y")]
+position = Vector2(320, 136)
+
+[node name="SteelMill3" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(304, 160)
+
+[node name="SteelMill4" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(336, 160)
+
+[node name="PowerPlant5" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(288, 232)
+
+[node name="PowerPlant6" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(320, 232)
+
+[node name="LumberMill4" parent="InitialBuildings" instance=ExtResource("11_rjf6c")]
+position = Vector2(304, 256)
+
+[node name="OilRefinery4" parent="InitialBuildings" instance=ExtResource("13_sid4y")]
+position = Vector2(272, 256)
+
+[node name="SteelMill5" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(64, 184)
+
+[node name="LumberMill5" parent="InitialBuildings" instance=ExtResource("11_rjf6c")]
+position = Vector2(96, 184)
+
+[node name="SteelMill6" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(80, 208)
+
+[node name="PowerPlant7" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(112, 208)
+
+[node name="LumberMill6" parent="InitialBuildings" instance=ExtResource("11_rjf6c")]
+position = Vector2(160, 280)
+
+[node name="SteelMill7" parent="InitialBuildings" instance=ExtResource("12_3aic2")]
+position = Vector2(192, 280)
+
+[node name="PowerPlant8" parent="InitialBuildings" instance=ExtResource("7_hfin2")]
+position = Vector2(176, 256)
+
+[node name="OilRefinery5" parent="InitialBuildings" instance=ExtResource("13_sid4y")]
+position = Vector2(144, 256)
+
+[node name="Cursor" parent="." instance=ExtResource("8_oioih")]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("9_bc8r4")
+format = 2
+layer_0/tile_data = PackedInt32Array(524294, 327680, 0, 262148, 0, 1, 196612, 327680, 0, 131077, 327680, 0, 196610, 196608, 0, 131075, 196608, 0, 196611, 262144, 0, 131076, 327680, 0, 262147, 327680, 0, 262146, 196608, 0, 327681, 196608, 0, 393218, 327680, 0, 327682, 327680, 0, 393219, 327680, 0, 327683, 327680, 0, 393220, 131072, 1, 327684, 196608, 0, 262149, 65536, 1, 196613, 196608, 0, 131078, 196608, 0, 131079, 327680, 0, 196614, 327680, 0, 262150, 131072, 0, 327685, 327680, 0, 393221, 327680, 0, 458756, 0, 1, 458755, 327680, 0, 458754, 327680, 0, 458757, 131072, 0, 393222, 327680, 0, 327686, 327680, 0, 262151, 131072, 0, 196615, 327680, 0, 458758, 131072, 0, 393223, 327680, 0, 393224, 327680, 0, 393225, 327680, 0, 393226, 327680, 0, 393227, 327680, 0, 393228, 262144, 0, 393217, 196608, 0, 131080, 327680, 0, 65544, 131072, 0, 65545, 65536, 0, 131082, 262144, 0, 196617, 327680, 0, 196618, 262144, 0, 262155, 262144, 0, 327691, 262144, 0, 327690, 327680, 0, 327689, 327680, 0, 327688, 327680, 0, 327687, 327680, 0, 262152, 131072, 0, 262153, 131072, 0, 262154, 131072, 0, 131081, 327680, 0, 196616, 327680, 0, 65543, 131072, 0, 65539, 0, 0, 65540, 131072, 0, 65541, 131072, 0, 65542, 131072, 0, 524293, 327680, 0, 589828, 131072, 0, 655364, 327680, 0, 720899, 327680, 0, 786435, 262144, 0, 720898, 262144, 0, 655362, 262144, 0, 589825, 262144, 0, 524289, 262144, 0, 458752, 131072, 1, 458753, 327680, 0, 524290, 327680, 0, 589826, 131072, 0, 655363, 327680, 0, 589827, 65536, 1, 524292, 196608, 0, 524291, 327680, 0, 524295, 327680, 0, 589831, 196608, 0, 655368, 327680, 0, 720904, 131072, 0, 786441, 327680, 0, 786440, 327680, 0, 786439, 327680, 0, 786438, 196608, 0, 786437, 327680, 0, 786436, 327680, 0, 720905, 131072, 0, 655370, 327680, 0, 589834, 327680, 0, 524299, 327680, 0, 458763, 65536, 0, 458762, 131072, 0, 524298, 327680, 0, 458761, 131072, 0, 524297, 327680, 0, 458760, 131072, 0, 524296, 196608, 0, 458759, 131072, 0, 589833, 327680, 0, 655369, 327680, 0, 589832, 327680, 0, 655367, 196608, 0, 720902, 196608, 1, 720903, 131072, 0, 720901, 327680, 0, 720900, 327680, 0, 655365, 327680, 0, 655366, 262144, 0, 589830, 327680, 0, 589829, 65536, 0, 458764, 196608, 1, 524300, 196608, 0, 589835, 196608, 0, 655371, 196608, 0, 720906, 196608, 0, 786442, 196608, 0, 851971, 0, 1, 851972, 131072, 0, 851973, 131072, 0, 851974, 131072, 0, 851975, 131072, 0, 851976, 131072, 0, 851977, 65536, 1, -1, 262144, 1, -65536, 262144, 1, -65535, 262144, 1, -65534, 262144, 1, -65533, 262144, 1, -65532, 262144, 1, -65531, 262144, 1, -65530, 262144, 1, -65529, 262144, 1, -65528, 262144, 1, -65527, 262144, 1, -65526, 262144, 1, -65525, 262144, 1, -65524, 262144, 1, -65523, 262144, 1, -65522, 262144, 1, -65521, 262144, 1, -65520, 262144, 1, -65519, 262144, 1, -65518, 262144, 1, -65517, 262144, 1, 65535, 262144, 1, 196607, 262144, 1, 131071, 262144, 1, 262143, 262144, 1, 327679, 262144, 1, 393215, 262144, 1, 458751, 262144, 1, 524287, 262144, 1, 589823, 262144, 1, 655359, 262144, 1, 720895, 262144, 1, 786431, 262144, 1, 851967, 262144, 1, 917503, 262144, 1, 983039, 262144, 1, 1048575, 262144, 1, 983040, 262144, 1, 983041, 262144, 1, 983042, 262144, 1, 983043, 262144, 1, 983044, 262144, 1, 983045, 262144, 1, 983046, 262144, 1, 983047, 262144, 1, 983048, 262144, 1, 983049, 262144, 1, 983050, 262144, 1, 983051, 262144, 1, 983052, 262144, 1, 983053, 262144, 1, 983054, 262144, 1, 983055, 262144, 1, 983056, 262144, 1, 983057, 262144, 1, 983058, 262144, 1, 983059, 262144, 1, 917524, 262144, 1, 20, 262144, 1, 65555, 262144, 1, 131092, 262144, 1, 196627, 262144, 1, 262164, 262144, 1, 327699, 262144, 1, 393236, 262144, 1, 458771, 262144, 1, 524308, 262144, 1, 589843, 262144, 1, 655380, 262144, 1, 720915, 262144, 1, 786452, 262144, 1, 851987, 262144, 1, 851979, 262144, 1, 786444, 262144, 1, 720908, 262144, 1, 655373, 262144, 1, 589837, 262144, 1, 524302, 262144, 1, 458766, 262144, 1, 393231, 262144, 1, 327695, 262144, 1, 262160, 262144, 1, 196624, 262144, 1, 131089, 262144, 1, 65553, 262144, 1, 18, 262144, 1, 17, 262144, 1, 16, 262144, 1, 15, 262144, 1, 14, 262144, 1, 13, 262144, 1, 12, 262144, 1, 11, 262144, 1, 10, 262144, 1, 9, 262144, 1, 8, 262144, 1, 7, 262144, 1, 6, 262144, 1, 5, 262144, 1, 4, 262144, 1, 3, 262144, 1, 2, 262144, 1, 1, 262144, 1, 0, 262144, 1, 65536, 262144, 1, 131072, 262144, 1, 196608, 262144, 1, 131073, 262144, 1, 65537, 262144, 1, 131074, 262144, 1, 65538, 262144, 1, 196609, 262144, 1, 262145, 262144, 1, 262144, 262144, 1, 327680, 262144, 1, 393216, 262144, 1, 65546, 262144, 1, 131083, 262144, 1, 65547, 262144, 1, 131084, 262144, 1, 65548, 262144, 1, 131085, 262144, 1, 65549, 262144, 1, 131086, 262144, 1, 65550, 262144, 1, 131087, 262144, 1, 65551, 262144, 1, 131088, 262144, 1, 65552, 262144, 1, 196623, 262144, 1, 196622, 262144, 1, 196621, 262144, 1, 196620, 262144, 1, 196619, 262144, 1, 262156, 262144, 1, 327692, 262144, 1, 262157, 262144, 1, 327693, 262144, 1, 262158, 262144, 1, 327694, 262144, 1, 262159, 262144, 1, 393230, 262144, 1, 393229, 262144, 1, 458765, 262144, 1, 524301, 262144, 1, 589836, 262144, 1, 655372, 262144, 1, 720907, 262144, 1, 786443, 262144, 1, 851978, 262144, 1, 917514, 262144, 1, 917513, 262144, 1, 917512, 262144, 1, 917511, 262144, 1, 917510, 262144, 1, 917509, 262144, 1, 917508, 262144, 1, 917507, 262144, 1, 851970, 262144, 1, 786434, 262144, 1, 720897, 262144, 1, 655361, 262144, 1, 589824, 262144, 1, 524288, 262144, 1, 655360, 262144, 1, 720896, 262144, 1, 786432, 262144, 1, 851968, 262144, 1, 786433, 262144, 1, 851969, 262144, 1, 917505, 262144, 1, 917504, 262144, 1, 917506, 262144, 1, 917515, 262144, 1, 917516, 262144, 1, 851980, 262144, 1, 786445, 262144, 1, 720909, 262144, 1, 655374, 262144, 1, 589838, 262144, 1, 524303, 262144, 1, 458767, 262144, 1, 393232, 262144, 1, 327696, 262144, 1, 262161, 262144, 1, 196625, 262144, 1, 131090, 262144, 1, 65554, 262144, 1, 19, 262144, 1, 131091, 262144, 1, 196626, 262144, 1, 262162, 262144, 1, 327697, 262144, 1, 393233, 262144, 1, 458768, 262144, 1, 524304, 262144, 1, 589839, 262144, 1, 655375, 262144, 1, 720910, 262144, 1, 786446, 262144, 1, 851981, 262144, 1, 917517, 262144, 1, 917518, 262144, 1, 851982, 262144, 1, 786447, 262144, 1, 720911, 262144, 1, 655376, 262144, 1, 589840, 262144, 1, 524305, 262144, 1, 458769, 262144, 1, 393234, 262144, 1, 327698, 262144, 1, 262163, 262144, 1, 393235, 262144, 1, 458770, 262144, 1, 524306, 262144, 1, 589841, 262144, 1, 655377, 262144, 1, 720912, 262144, 1, 786448, 262144, 1, 851983, 262144, 1, 917519, 262144, 1, 917520, 262144, 1, 851984, 262144, 1, 786449, 262144, 1, 720913, 262144, 1, 655378, 262144, 1, 589842, 262144, 1, 524307, 262144, 1, 655379, 262144, 1, 720914, 262144, 1, 786450, 262144, 1, 851985, 262144, 1, 917521, 262144, 1, 917522, 262144, 1, 851986, 262144, 1, 786451, 262144, 1, 917523, 262144, 1)
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(65539, 393216, 0, 131075, 327680, 2, 196610, 327680, 2, 262146, 327680, 2, 327681, 327680, 2, 393217, 327680, 2, 458752, 327680, 1, 524289, 196608, 2, 589825, 196608, 2, 655362, 196608, 2, 720898, 196608, 2, 786435, 196608, 2, 851971, 393216, 4, 851972, 262144, 3, 851973, 262144, 3, 851974, 262144, 3, 851975, 262144, 3, 851976, 262144, 3, 851977, 458752, 4, 786442, 262144, 2, 720906, 262144, 2, 655371, 262144, 2, 589835, 262144, 2, 524300, 262144, 2, 458764, 393216, 3, 393228, 393216, 2, 327691, 393216, 2, 262155, 393216, 2, 196618, 393216, 2, 131082, 393216, 2, 65545, 458752, 0, 65544, 196608, 3, 65543, 196608, 3, 65542, 196608, 3, 65541, 196608, 3, 65540, 196608, 3, 327690, 327680, 0, 393227, 327680, 0)
+
+[node name="SpawnNode" type="Node2D" parent="."]
+
+[node name="BuildPanel" parent="." instance=ExtResource("10_uknfv")]

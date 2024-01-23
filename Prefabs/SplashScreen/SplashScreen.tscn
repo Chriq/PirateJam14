@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4r5c28iri6j"]
 
 [ext_resource type="Script" path="res://Prefabs/SplashScreen/SplashScreen.cs" id="1_pkb7r"]
-[ext_resource type="PackedScene" uid="uid://c21ifyqrnx6lm" path="res://christian.tscn" id="2_vyggq"]
+[ext_resource type="PackedScene" uid="uid://c21ifyqrnx6lm" path="res://main.tscn" id="2_vyggq"]
 [ext_resource type="Script" path="res://Prefabs/SplashScreen/FadeController.cs" id="3_iibf8"]
 [ext_resource type="Texture2D" uid="uid://bbaavwltgc6f6" path="res://Art/jam_full.png" id="4_j1gig"]
 

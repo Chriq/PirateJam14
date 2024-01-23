@@ -26,7 +26,7 @@ public partial class MapManager : Node {
 	
 	[ExportGroup("Grid Layout")]
 	[Export] public int bound = 6;
-	[Export] public Vector2I center = new Vector2I(4,4);
+	[Export] public Vector2I center = new Vector2I(6,7);
 
 	[Signal] public delegate void BuildingAddedEventHandler();
 	
@@ -118,8 +118,9 @@ public partial class MapManager : Node {
 			build.Position = tilemap.MapToLocal(cell);
 			SpawnNode.AddChild(build);
 			AddBuildingToMap(cell, build);
+			Cursor.Instance.DeselectTile();
 			EmitSignal(SignalName.BuildingAdded);
-			
+
 			return build;
 		}
 		
