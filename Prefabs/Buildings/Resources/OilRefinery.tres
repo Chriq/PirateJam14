@@ -10,3 +10,4 @@ electricityCostPerTurn = 5
 requiredResources = Array[int]([2, 3])
 buildCosts = PackedInt32Array()
 repairCosts = PackedInt32Array(5, 10)
+description = "Produces oil every turn."

@@ -29,7 +29,5 @@ public partial class BuildCard : Button {
 	public void OnClick() {
 		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
 		MapManager.Instance.BuildOnTile(selectedHexNode, buildingPrefab);
-
-		//PlayerTurnManager.Instance.SelectItemToBuild(buildingPrefab);
 	}
 }

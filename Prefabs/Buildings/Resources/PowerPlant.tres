@@ -10,3 +10,4 @@ electricityCostPerTurn = 0
 requiredResources = Array[int]([2, 1])
 buildCosts = PackedInt32Array()
 repairCosts = PackedInt32Array()
+description = "Powers buildings that require electricity."

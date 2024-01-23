@@ -1,94 +1,140 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqiltdwov8ham"]
+[gd_scene load_steps=8 format=3 uid="uid://dqiltdwov8ham"]
 
 [ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="1_ogeyx"]
 [ext_resource type="Script" path="res://UI/BuildingCard/BuildCard.cs" id="1_paib2"]
 [ext_resource type="Texture2D" uid="uid://clb80giyncjqv" path="res://Art/UI.png" id="4_uov10"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw64q"]
+atlas = ExtResource("4_uov10")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p222t"]
+atlas = ExtResource("4_uov10")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baj6g"]
+atlas = ExtResource("4_uov10")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67vc2"]
+atlas = ExtResource("4_uov10")
+region = Rect2(48, 0, 16, 16)
+
 [node name="BuildingCard" type="Button" node_paths=PackedStringArray("nameLabel", "descriptionLabel", "electricLabel", "woodLabel", "steelLabel", "oilLabel")]
 offset_right = 80.0
-offset_bottom = 119.0
+offset_bottom = 123.0
 theme = ExtResource("1_ogeyx")
 script = ExtResource("1_paib2")
 nameLabel = NodePath("Name")
 descriptionLabel = NodePath("Description")
-electricLabel = NodePath("VFlowContainer/HFlowContainer/Label2")
-woodLabel = NodePath("VFlowContainer/HFlowContainer/Label")
-steelLabel = NodePath("VFlowContainer/HFlowContainer/Label3")
-oilLabel = NodePath("VFlowContainer/HFlowContainer/Label4")
+electricLabel = NodePath("GridContainer/Label")
+woodLabel = NodePath("GridContainer/Label2")
+steelLabel = NodePath("GridContainer/Label3")
+oilLabel = NodePath("GridContainer/Label4")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 34.0
+offset_top = 36.0
 offset_right = 78.0
-offset_bottom = 57.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
 text = "Wall"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 51.0
-offset_right = 78.0
-offset_bottom = 69.0
+offset_top = 46.0
+offset_right = 80.0
+offset_bottom = 76.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 1
 theme_override_font_sizes/font_size = 8
-text = "Wall"
+text = "Wall Wall Wall Wall Wall Wall Wall Wall Wall "
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Cost" type="Label" parent="."]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 70.0
-offset_right = 80.0
-offset_bottom = 88.0
+offset_left = 2.0
+offset_top = 84.0
+offset_right = 78.0
+offset_bottom = 90.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "Cost
 "
 horizontal_alignment = 1
 
-[node name="VFlowContainer" type="VFlowContainer" parent="."]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 81.0
-offset_right = 71.0
-offset_bottom = 117.0
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="VFlowContainer"]
+[node name="GridContainer" type="GridContainer" parent="."]
 clip_contents = true
-custom_minimum_size = Vector2(64, 16)
+custom_minimum_size = Vector2(76, 28)
 layout_mode = 2
-texture = ExtResource("4_uov10")
+offset_left = 2.0
+offset_top = 90.0
+offset_right = 78.0
+offset_bottom = 118.0
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_hw64q")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="VFlowContainer"]
-custom_minimum_size = Vector2(64, 0)
+[node name="TextureRect2" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_p222t")
+expand_mode = 1
+stretch_mode = 2
 
-[node name="Label2" type="Label" parent="VFlowContainer/HFlowContainer"]
+[node name="TextureRect3" type="TextureRect" parent="GridContainer"]
+clip_contents = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "10
-"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_baj6g")
 
-[node name="Label" type="Label" parent="VFlowContainer/HFlowContainer"]
+[node name="TextureRect4" type="TextureRect" parent="GridContainer"]
+clip_contents = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "10
-"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_67vc2")
 
-[node name="Label3" type="Label" parent="VFlowContainer/HFlowContainer"]
+[node name="Label" type="Label" parent="GridContainer"]
+clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 11
-text = "10
-"
 
-[node name="Label4" type="Label" parent="VFlowContainer/HFlowContainer"]
+[node name="Label2" type="Label" parent="GridContainer"]
+clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 11
-text = "10
-"
+
+[node name="Label3" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 11
+
+[node name="Label4" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 11

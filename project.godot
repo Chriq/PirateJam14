@@ -26,6 +26,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="PirateJam14"
 
+[gui]
+
+theme/custom_font="res://UI/8bitOperatorPlus8-Regular.ttf"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

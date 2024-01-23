@@ -7,6 +7,8 @@ public partial class BuildingPanel : Node2D {
 	[Export] private Label steelLabel;
 	[Export] private Label oilLabel;
 
+	[Export] private VBoxContainer labelContainer;
+
 	[Export] private Node2D buildCardsContainer;
 	[Export] private Button repairButton;
 
@@ -14,15 +16,33 @@ public partial class BuildingPanel : Node2D {
         PlayerResources.Instance.ResourcesChanged += UpdateResourceUI;
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateBuildUI;
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateRepairUI;
+		PlayerTurnManager.Instance.HexNodeSelected += UpdateNameUI;
 		MapManager.Instance.BuildingAdded += ResetBuildPanel;
 		UpdateResourceUI();
 		ResetBuildPanel();
     }
 
+	private void UpdateNameUI() {
+		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
+		labelContainer.Show();
+		if(selectedHexNode.occupierBlob != null) {
+			labelContainer.GetChild<Label>(0).Text = "BLOB";
+			labelContainer.GetChild<Label>(1).Text = "";
+			labelContainer.GetChild<Label>(2).Text = "";
+		} else if(selectedHexNode.occupierBuilding != null) {
+			labelContainer.GetChild<Label>(0).Text = selectedHexNode.occupierBuilding.buildingData.type.ToString().Replace('_', ' ');
+			labelContainer.GetChild<Label>(1).Text = selectedHexNode.occupierBuilding.buildingData.description;
+			labelContainer.GetChild<Label>(2).Text = "Health: " + selectedHexNode.occupierBuilding.currentHealth + " / " + selectedHexNode.occupierBuilding.buildingData.maxTurnsOfHealth;
+		} else {
+			labelContainer.Hide();
+		}
+	}
+
     private void UpdateResourceUI() {
 		electricityLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.ELECTRICITY].ToString();
 		woodLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.WOOD].ToString();
 		steelLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.STEEL].ToString();
+		oilLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.OIL].ToString();
 	}
 
 	private void UpdateBuildUI() {

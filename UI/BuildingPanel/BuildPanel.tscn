@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://buskvgmuj20vs"]
+[gd_scene load_steps=19 format=3 uid="uid://buskvgmuj20vs"]
 
 [ext_resource type="Script" path="res://UI/BuildingPanel/BuildingPanel.cs" id="1_7t8jj"]
 [ext_resource type="PackedScene" uid="uid://dqiltdwov8ham" path="res://UI/BuildingCard/BuildingCard.tscn" id="1_pd58n"]
@@ -15,12 +15,29 @@
 [ext_resource type="Resource" uid="uid://d2upf2w8inp5f" path="res://Prefabs/Buildings/Resources/DefenseFreezeRay.tres" id="11_4vugo"]
 [ext_resource type="PackedScene" uid="uid://bkoxatwx0wkr8" path="res://Prefabs/Buildings/DefenseFreezeRay.tscn" id="12_3m8k3"]
 
-[node name="BuildPanel" type="Node2D" node_paths=PackedStringArray("electricityLabel", "woodLabel", "steelLabel", "oilLabel", "buildCardsContainer", "repairButton")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwde5"]
+atlas = ExtResource("4_5cyd0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56oox"]
+atlas = ExtResource("4_5cyd0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxa0o"]
+atlas = ExtResource("4_5cyd0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni4ss"]
+atlas = ExtResource("4_5cyd0")
+region = Rect2(48, 0, 16, 16)
+
+[node name="BuildPanel" type="Node2D" node_paths=PackedStringArray("electricityLabel", "woodLabel", "steelLabel", "oilLabel", "labelContainer", "buildCardsContainer", "repairButton")]
 script = ExtResource("1_7t8jj")
-electricityLabel = NodePath("ResourceLabel/Electricity/Label")
-woodLabel = NodePath("ResourceLabel/Wood/Label")
-steelLabel = NodePath("ResourceLabel/Steel/Label")
-oilLabel = NodePath("ResourceLabel/Oil/Label")
+electricityLabel = NodePath("GridContainer/Label")
+woodLabel = NodePath("GridContainer/Label2")
+steelLabel = NodePath("GridContainer/Label3")
+oilLabel = NodePath("GridContainer/Label4")
+labelContainer = NodePath("TileDescription/VBoxContainer")
 buildCardsContainer = NodePath("BuildCards")
 repairButton = NodePath("Repair")
 
@@ -35,6 +52,31 @@ patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 
+[node name="TileDescription" type="Node2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TileDescription"]
+custom_minimum_size = Vector2(159, 99)
+offset_left = 475.0
+offset_top = 7.0
+offset_right = 634.0
+offset_bottom = 106.0
+
+[node name="Name" type="Label" parent="TileDescription/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="TileDescription/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
+
+[node name="Health" type="Label" parent="TileDescription/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
+
 [node name="BuildCards" type="Node2D" parent="."]
 position = Vector2(71, 0)
 
@@ -47,7 +89,7 @@ buildingInfo = ExtResource("2_estob")
 buildingPrefab = ExtResource("3_ihbms")
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildCards/Wall"]
-position = Vector2(39, 20)
+position = Vector2(39, 19)
 texture = ExtResource("4_ikv4b")
 region_enabled = true
 region_rect = Rect2(32, 64, 32, 32)
@@ -61,7 +103,7 @@ buildingInfo = ExtResource("7_rr4tw")
 buildingPrefab = ExtResource("8_kubxv")
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildCards/Mine"]
-position = Vector2(39, 20)
+position = Vector2(39, 19)
 texture = ExtResource("4_ikv4b")
 region_enabled = true
 region_rect = Rect2(32, 96, 32, 32)
@@ -75,10 +117,10 @@ buildingInfo = ExtResource("9_fyju1")
 buildingPrefab = ExtResource("10_4t2wv")
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildCards/Laser"]
-position = Vector2(39, 20)
+position = Vector2(39, 19)
 texture = ExtResource("4_ikv4b")
 region_enabled = true
-region_rect = Rect2(64, 128, 32, 33)
+region_rect = Rect2(64, 128, 32, 32)
 
 [node name="Freeze" parent="BuildCards" instance=ExtResource("1_pd58n")]
 offset_left = 485.0
@@ -89,79 +131,96 @@ buildingInfo = ExtResource("11_4vugo")
 buildingPrefab = ExtResource("12_3m8k3")
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildCards/Freeze"]
-position = Vector2(39, 20)
+position = Vector2(39, 19)
 texture = ExtResource("4_ikv4b")
 region_enabled = true
-region_rect = Rect2(96, 128, 32, 33)
+region_rect = Rect2(96, 128, 32, 32)
 
-[node name="ResourceLabel" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="Label" type="Label" parent="."]
 offset_left = 470.0
-offset_top = 277.0
-offset_right = 637.0
-offset_bottom = 298.0
-
-[node name="Label" type="Label" parent="ResourceLabel"]
-layout_mode = 0
-offset_top = -11.0
-offset_right = 168.0
-offset_bottom = 2.0
+offset_top = 260.0
+offset_right = 638.0
+offset_bottom = 266.0
 theme_override_font_sizes/font_size = 8
 text = "My Resources"
 horizontal_alignment = 1
 
-[node name="Electricity" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(8, 9)
-texture = ExtResource("4_5cyd0")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+[node name="GridContainer" type="GridContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(164, 28)
+offset_left = 472.0
+offset_top = 270.0
+offset_right = 636.0
+offset_bottom = 298.0
+columns = 4
 
-[node name="Label" type="Label" parent="ResourceLabel/Electricity"]
-offset_left = 9.0
-offset_top = -12.0
-offset_right = 58.0
-offset_bottom = 11.0
-text = "0"
+[node name="TextureRect" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_dwde5")
+expand_mode = 1
+stretch_mode = 2
 
-[node name="Wood" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(52, 10)
-texture = ExtResource("4_5cyd0")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
+[node name="TextureRect2" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_56oox")
+expand_mode = 1
+stretch_mode = 2
 
-[node name="Label" type="Label" parent="ResourceLabel/Wood"]
-offset_left = 9.0
-offset_top = -12.0
-offset_right = 58.0
-offset_bottom = 11.0
-text = "0"
+[node name="TextureRect3" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_wxa0o")
+expand_mode = 1
+stretch_mode = 2
 
-[node name="Steel" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(95, 10)
-texture = ExtResource("4_5cyd0")
-region_enabled = true
-region_rect = Rect2(32, 0, 16, 16)
+[node name="TextureRect4" type="TextureRect" parent="GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_ni4ss")
+expand_mode = 1
+stretch_mode = 2
 
-[node name="Label" type="Label" parent="ResourceLabel/Steel"]
-offset_left = 9.0
-offset_top = -12.0
-offset_right = 58.0
-offset_bottom = 11.0
-text = "0"
+[node name="Label" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 11
 
-[node name="Oil" type="Sprite2D" parent="ResourceLabel"]
-position = Vector2(137, 10)
-texture = ExtResource("4_5cyd0")
-region_enabled = true
-region_rect = Rect2(48, 0, 16, 16)
+[node name="Label2" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 11
 
-[node name="Label" type="Label" parent="ResourceLabel/Oil"]
-offset_left = 9.0
-offset_top = -12.0
-offset_right = 58.0
-offset_bottom = 11.0
-text = "0"
+[node name="Label3" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 11
+
+[node name="Label4" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 11
 
 [node name="Repair" type="Button" parent="."]
 offset_left = 472.0
