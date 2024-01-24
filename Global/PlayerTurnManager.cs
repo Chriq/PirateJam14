@@ -7,8 +7,7 @@ public partial class PlayerTurnManager : Node {
 	
 	[Export] public Texture2D ConstructionSprite;
 	
-	// Building nodes 
-	[Export] public PackedScene[] BuildingScenes;
+	// Building nodes
 	private PackedScene selectedItemToBuild;
 	public HexNode selectedHexNode;
 	public Vector2I selectedTileIndex;
@@ -33,6 +32,10 @@ public partial class PlayerTurnManager : Node {
 			MapManager.Instance.AddBuildingToMap(gridPosition, building);
 			building.currentBuild = 0;
 		}
+	}
+	public override void _ExitTree()
+	{
+		Instance = null;
 	}
 
 	public override void _Process(double delta) {

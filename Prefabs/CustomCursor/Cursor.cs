@@ -10,8 +10,12 @@ public partial class Cursor : Node2D {
 			Instance = this;
 		}
 	}
+	public override void _ExitTree()
+	{
+		Instance = null;
+	}
 
-    public override void _Process(double delta) {
+	public override void _Process(double delta) {
 		Vector2I gridPosition = GetMouseGridPosition();
 
 		if(MapManager.Instance.InBounds(gridPosition)) {
@@ -21,7 +25,7 @@ public partial class Cursor : Node2D {
 			Hide();
 		}
 		
-    }
+	}
 
 	public Vector2I GetMouseGridPosition() {
 		return MapManager.Instance.tilemap.LocalToMap(GetGlobalMousePosition());

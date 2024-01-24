@@ -5,9 +5,6 @@ public partial class TurnSystemManager : Node {
 	// Blob Turn Counter
 	int turn_counter = 0;
 	
-	[Export] public PackedScene WinScene;
-	[Export] public PackedScene LossScene;
-	
 	public override void _Ready() {
 		PlayerTurnManager.Instance.PlayerTurnEnded += StartBlobTurn;
 		BlobTurnManager.Instance.BlobTurnEnded += StartPlayerTurn;
@@ -21,9 +18,9 @@ public partial class TurnSystemManager : Node {
 		
 		foreach (IBuilding building in PlayerTurnManager.Instance.playerBuildings)
 		{
+			// Update Constructions
 			if (building.status == BuildingState.BUILDING)
 			{
-				// Update Constructions
 				building.Construct();
 				continue;
 			}
@@ -42,17 +39,16 @@ public partial class TurnSystemManager : Node {
 	}
 
 	private void StartBlobTurn() {
-		CheckVictoryConditions();
+		if (CheckVictoryConditions())
+			return;
 		
 		BlobTurnManager.Instance.BlobTurn();
 	}
 	
-	public void CheckVictoryConditions(bool player_concede = false)
+	private bool CheckVictoryConditions(bool player_concede = false)
 	{
 		int n_blobs = BlobTurnManager.Instance.Blobs.Count;
 		int n_tiles = (3 * MapManager.Instance.bound * (MapManager.Instance.bound + 1)) + 1;
-		
-		GD.Print($"Turn({turn_counter}) N_Blobs({n_blobs}) TileTarget({n_tiles * 0.75})");
 		
 		// WIN Conditions
 		if (
@@ -63,7 +59,8 @@ public partial class TurnSystemManager : Node {
 			)
 		{
 			GD.Print("PLAYER WIN");
-			GetTree().ChangeSceneToPacked(WinScene);
+			GetTree().ChangeSceneToFile("res://Scenes/WinScene.tscn");
+			return true;
 		}
 		
 		
@@ -76,7 +73,10 @@ public partial class TurnSystemManager : Node {
 			)
 		{
 			GD.Print("BLOB WIN");
-			GetTree().ChangeSceneToPacked(LossScene);
+			GetTree().ChangeSceneToFile("res://Scenes/LossScene.tscn");
+			return true;
 		}
+		
+		return false;
 	}
 }

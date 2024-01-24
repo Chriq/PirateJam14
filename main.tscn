@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c21ifyqrnx6lm"]
+[gd_scene load_steps=17 format=3 uid="uid://c21ifyqrnx6lm"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_ge0yb"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_03bd7"]
@@ -8,10 +8,8 @@
 [ext_resource type="Script" path="res://Global/PlayerResources.cs" id="5_0g7ox"]
 [ext_resource type="Script" path="res://Global/TurnSystemManager.cs" id="6_55v23"]
 [ext_resource type="PackedScene" uid="uid://dxxn7x4byd2hx" path="res://Prefabs/Buildings/PowerPlant.tscn" id="7_hfin2"]
-[ext_resource type="PackedScene" uid="uid://ewpk5q7f26q4" path="res://Scenes/WinScene.tscn" id="8_hnfqf"]
 [ext_resource type="PackedScene" uid="uid://ce2x83dh12ynj" path="res://Prefabs/CustomCursor/Cursor.tscn" id="8_oioih"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="9_bc8r4"]
-[ext_resource type="PackedScene" uid="uid://bnci3epx8g08a" path="res://Scenes/LossScene.tscn" id="9_cgk2b"]
 [ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="10_uknfv"]
 [ext_resource type="PackedScene" uid="uid://cjjoe5bwcivdp" path="res://Prefabs/Buildings/LumberMill.tscn" id="11_rjf6c"]
 [ext_resource type="PackedScene" uid="uid://cr0t2li6gqsil" path="res://Prefabs/Buildings/SteelMill.tscn" id="12_3aic2"]
@@ -50,8 +48,6 @@ script = ExtResource("5_0g7ox")
 
 [node name="TurnSystemManager" type="Node" parent="Singletons"]
 script = ExtResource("6_55v23")
-WinScene = ExtResource("8_hnfqf")
-LossScene = ExtResource("9_cgk2b")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("9_bc8r4")
