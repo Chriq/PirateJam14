@@ -17,7 +17,6 @@ public partial class Cursor : Node2D {
 		if(MapManager.Instance.InBounds(gridPosition)) {
 			Show();
 			Position = MapManager.Instance.tilemap.MapToLocal(gridPosition);
-
 		} else {
 			Hide();
 		}

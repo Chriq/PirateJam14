@@ -18,6 +18,7 @@ public partial class BuildingPanel : Node2D {
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateRepairUI;
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateNameUI;
 		MapManager.Instance.BuildingAdded += ResetBuildPanel;
+		repairButton.Pressed += Repair;
 		UpdateResourceUI();
 		ResetBuildPanel();
     }
@@ -74,6 +75,8 @@ public partial class BuildingPanel : Node2D {
 		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
 		MapManager.Instance.RepairBuildingOnTile(selectedHexNode);
 		UpdateRepairUI();
+		UpdateResourceUI();
+		UpdateNameUI();
 	}
 
 	public void ResetBuildPanel() {

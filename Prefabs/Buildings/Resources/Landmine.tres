@@ -11,3 +11,4 @@ requiredResources = Array[int]([2, 3])
 buildCosts = PackedInt32Array(5, 10)
 repairCosts = PackedInt32Array()
 description = "Detonates when blob enters tile. Destoys adjacent blobs and buildings."
+buildTimer = 0

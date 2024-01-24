@@ -11,6 +11,9 @@ public partial class Building : Resource
 	[Export] public int[] buildCosts;
 	[Export] public int[] repairCosts;
 	[Export] public string description;
+	[Export] public int buildTimer = 0;
+	[Export] public Texture2D damageSprite;
+	[Export] public Texture2D destroyedSprite;
 
 	public System.Collections.Generic.Dictionary<ResourceType, int> buildCost;
 	public System.Collections.Generic.Dictionary<ResourceType, int> repairCost;

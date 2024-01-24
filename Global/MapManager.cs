@@ -130,6 +130,7 @@ public partial class MapManager : Node {
 	public void RepairBuildingOnTile(HexNode tile) {
 		PlayerResources.Instance.SpendResourcesRepairingBuilding(tile.occupierBuilding);
 		tile.occupierBuilding.currentHealth++;
+		tile.occupierBuilding.UpdateDamageSprite();
 	}
 
 	public void AddBlobToMap(Vector2I gridPosition, Blob blob) {

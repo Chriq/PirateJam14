@@ -11,3 +11,4 @@ requiredResources = Array[int]([0, 2])
 buildCosts = PackedInt32Array(10, 2)
 repairCosts = PackedInt32Array()
 description = "Stops blobs from expanding until destroyed."
+buildTimer = 0

@@ -3,30 +3,37 @@ using System.Collections.Generic;
 
 public partial class IBuilding : Node2D {
 	[Export] public Building buildingData;
-	[Export] public int buildTimer = 4;
+	
 	
 	private Sprite2D ConstructionSprite = null;
 	
 	public BuildingState status { get; private set; }
 	
-	private int currentBuild;
+	public int currentBuild;
 	public int currentHealth;
 
 	public Dictionary<ResourceType, int> buildCost;
 	public Dictionary<ResourceType, int> repairCost;
 	
+
+	private Sprite2D damagedSprite;
+	
 	public override void _Ready() {
 		ConstructionSprite = new Sprite2D();
 		ConstructionSprite.Texture = PlayerTurnManager.Instance.ConstructionSprite;
+
+		damagedSprite = new();
+		AddChild(damagedSprite);
 		
 		currentHealth = buildingData.maxTurnsOfHealth;
 		Repair();
+		Construct();
 	}
 	
 	public void Repair()
 	{
 		status = BuildingState.BUILDING;
-		currentBuild = buildTimer;
+		currentBuild = buildingData.buildTimer;
 		AddChild(ConstructionSprite);
 	}
 	
@@ -42,6 +49,15 @@ public partial class IBuilding : Node2D {
 	public virtual void DamageHealth(Vector2I position, int damage = 1)
 	{
 		currentHealth -= damage;
+		if(currentHealth < 0) {
+			currentHealth = 0;
+		}
+
+		if(currentHealth > 0) {
+			damagedSprite.Texture = buildingData.damageSprite;
+		} else {
+			damagedSprite.Texture = buildingData.destroyedSprite;
+		}
 		
 		if (currentHealth <= 0)
 		{
@@ -60,6 +76,14 @@ public partial class IBuilding : Node2D {
 			
 			status = BuildingState.DESTROYED;
 			// TODO: Spawn Destroyed Icon
+		}
+	}
+
+	public void UpdateDamageSprite() {
+		if(currentHealth == buildingData.maxTurnsOfHealth) {
+			damagedSprite.Texture = null;
+		} else {
+			damagedSprite.Texture = buildingData.damageSprite;
 		}
 	}
 
