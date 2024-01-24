@@ -58,6 +58,10 @@ public partial class MapManager : Node {
 		if(Instance == null)
 			Instance = this;
 	}
+	public override void _ExitTree()
+	{
+		Instance = null;
+	}
 	
 	// Grid Navigation Tools
 	public bool InBounds(Vector2I position)

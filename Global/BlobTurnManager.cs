@@ -23,6 +23,10 @@ public partial class BlobTurnManager : Node
 		Blobs = new List<Blob>();
 		BlobInit();
 	}
+	public override void _ExitTree()
+	{
+		Instance = null;
+	}
 	
 	// Blob Turn Signal
 	[Signal] public delegate void BlobTurnEndedEventHandler();

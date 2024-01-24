@@ -19,6 +19,10 @@ public partial class PlayerResources : Node {
 			playerResourceCounts.Add(type, 30);
 		}
 	}
+	public override void _ExitTree()
+	{
+		Instance = null;
+	}
 	
 	public void CollectResources() {
 		foreach(IBuilding buildingNode in PlayerTurnManager.Instance.playerBuildings) {
