@@ -6,7 +6,7 @@ public partial class IBuilding : Node2D {
 	
 	private Sprite2D ConstructionSprite = null;
 	
-	public BuildingState status { get; private set; }
+	public BuildingState status;
 	
 	[Export] public int currentBuild = 10;
 	public int currentHealth;
@@ -80,11 +80,16 @@ public partial class IBuilding : Node2D {
 	}
 
 	public void UpdateDamageSprite() {
-		if(currentHealth == buildingData.maxTurnsOfHealth) {
-			damagedSprite.Texture = null;
-		} else {
-			damagedSprite.Texture = buildingData.damageSprite;
+		if(damagedSprite != null) {
+			if(status.Equals(BuildingState.UNPOWERED)) {
+				damagedSprite.Texture = buildingData.needsElectricitySprite;
+			} else if(currentHealth == buildingData.maxTurnsOfHealth) {
+				damagedSprite.Texture = null;
+			} else {
+				damagedSprite.Texture = buildingData.damageSprite;
+			}
 		}
+		
 	}
 
 	public Dictionary<ResourceType, int> GetBuildCost() {

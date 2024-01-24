@@ -14,6 +14,7 @@ public partial class Building : Resource
 	[Export] public int buildTimer = 0;
 	[Export] public Texture2D damageSprite;
 	[Export] public Texture2D destroyedSprite;
+	[Export] public Texture2D needsElectricitySprite;
 
 	public System.Collections.Generic.Dictionary<ResourceType, int> buildCost;
 	public System.Collections.Generic.Dictionary<ResourceType, int> repairCost;
@@ -70,4 +71,5 @@ public enum BuildingState {
 	ACTIVE,
 	BUILDING,
 	DESTROYED,
+	UNPOWERED
 }

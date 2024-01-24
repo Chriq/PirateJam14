@@ -76,7 +76,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 autowrap_mode = 3
 
+[node name="Electricity" type="Label" parent="TileDescription/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
+
 [node name="BuildCards" type="Node2D" parent="."]
+visible = false
 position = Vector2(71, 0)
 
 [node name="Wall" parent="BuildCards" instance=ExtResource("1_pd58n")]

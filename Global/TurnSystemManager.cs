@@ -18,22 +18,23 @@ public partial class TurnSystemManager : Node {
 		
 		foreach (IBuilding building in PlayerTurnManager.Instance.playerBuildings)
 		{
-			// Update Constructions
-			if (building.status == BuildingState.BUILDING)
-			{
-				building.Construct();
-				continue;
-			}
-			
-			// Execute Defense Actions
-			switch (building.buildingData.type)
-			{
-				case (BuildingType.FREEZERAY):
-				case (BuildingType.LASER):
-				{
-					((IActiveDefense) building).Action();
+			switch(building.status) {
+				case BuildingState.BUILDING:
+					// Update Constructions
+					building.Construct();
 					break;
-				}
+				case BuildingState.ACTIVE:
+					// Execute Defense Actions
+					switch (building.buildingData.type)
+					{
+						case (BuildingType.FREEZERAY):
+						case (BuildingType.LASER):
+						{
+							((IActiveDefense) building).Action();
+							break;
+						}
+					}
+					break;
 			}
 		} 
 	}

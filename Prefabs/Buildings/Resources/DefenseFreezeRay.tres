@@ -7,9 +7,9 @@
 atlas = ExtResource("1_wsnek")
 region = Rect2(128, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hc5gb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_thqd4"]
 atlas = ExtResource("1_wsnek")
-region = Rect2(224, 96, 32, 32)
+region = Rect2(224, 64, 32, 32)
 
 [resource]
 script = ExtResource("1_ctbdv")
@@ -22,4 +22,5 @@ repairCosts = PackedInt32Array(10, 2)
 description = "Freezes blobs in place for 4 turns."
 buildTimer = 0
 damageSprite = SubResource("AtlasTexture_hb2hy")
-destroyedSprite = SubResource("AtlasTexture_hc5gb")
+destroyedSprite = SubResource("AtlasTexture_thqd4")
+needsElectricitySprite = SubResource("AtlasTexture_thqd4")

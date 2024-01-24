@@ -130,14 +130,19 @@ public partial class MapManager : Node {
 		SpawnNode.AddChild(build);
 		AddBuildingToMap(cell, build);
 		Cursor.Instance.DeselectTile();
-		EmitSignal(SignalName.BuildingAdded);
 		
 		PlayerTurnManager.Instance.playerBuildings.Add(build);
+
+		PlayerResources.Instance.CalculateElectricity();
+
+		EmitSignal(SignalName.BuildingAdded);
 	}
 
 	public void RepairBuildingOnTile(HexNode tile) {
 		PlayerResources.Instance.SpendResourcesRepairingBuilding(tile.occupierBuilding);
 		tile.occupierBuilding.currentHealth++;
+		tile.occupierBuilding.status = BuildingState.ACTIVE;
+		PlayerResources.Instance.CalculateElectricity();
 		tile.occupierBuilding.UpdateDamageSprite();
 	}
 

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class BuildingPanel : Node2D {
 	[Export] private Label electricityLabel;
@@ -30,10 +31,12 @@ public partial class BuildingPanel : Node2D {
 			labelContainer.GetChild<Label>(0).Text = "BLOB";
 			labelContainer.GetChild<Label>(1).Text = "";
 			labelContainer.GetChild<Label>(2).Text = "";
+			labelContainer.GetChild<Label>(3).Text = "";
 		} else if(selectedHexNode.occupierBuilding != null) {
 			labelContainer.GetChild<Label>(0).Text = selectedHexNode.occupierBuilding.buildingData.type.ToString().Replace('_', ' ');
 			labelContainer.GetChild<Label>(1).Text = selectedHexNode.occupierBuilding.buildingData.description;
 			labelContainer.GetChild<Label>(2).Text = "Health: " + selectedHexNode.occupierBuilding.currentHealth + " / " + selectedHexNode.occupierBuilding.buildingData.maxTurnsOfHealth;
+			labelContainer.GetChild<Label>(3).Text = "Electricity: " + (selectedHexNode.occupierBuilding.status == BuildingState.UNPOWERED ? $"NEEDS {selectedHexNode.occupierBuilding.buildingData.electricityCostPerTurn} POWER" : "STABLE");
 		} else {
 			labelContainer.Hide();
 		}
@@ -64,8 +67,19 @@ public partial class BuildingPanel : Node2D {
 		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
 		bool isTileRepairable = selectedHexNode.occupierBlob == null && 
 								selectedHexNode.occupierBuilding?.currentHealth < selectedHexNode.occupierBuilding?.buildingData.maxTurnsOfHealth;
+		bool canAfford = true;
 
-		if(isTileRepairable) {
+		Dictionary<ResourceType, int> repairCosts = selectedHexNode.occupierBuilding?.GetRepairCost();
+		if(repairCosts != null) {
+			foreach(ResourceType resource in repairCosts?.Keys) {
+				if(PlayerResources.Instance.playerResourceCounts[resource] < repairCosts[resource]) {
+					canAfford = false;
+				}
+			}
+		}
+		
+
+		if(isTileRepairable && canAfford) {
 			repairButton.Show();
 		} else {
 			repairButton.Hide();

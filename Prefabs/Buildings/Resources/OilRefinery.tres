@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bb4xbx1hupq5e"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bb4xbx1hupq5e"]
 
 [ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="1_7umv8"]
 [ext_resource type="Script" path="res://Prefabs/Buildings/Interfaces/Building.cs" id="1_xkbx6"]
@@ -10,6 +10,10 @@ region = Rect2(128, 128, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hc5gb"]
 atlas = ExtResource("1_7umv8")
 region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thqd4"]
+atlas = ExtResource("1_7umv8")
+region = Rect2(224, 64, 32, 32)
 
 [resource]
 script = ExtResource("1_xkbx6")
@@ -23,3 +27,4 @@ description = "Produces oil every turn."
 buildTimer = 0
 damageSprite = SubResource("AtlasTexture_hb2hy")
 destroyedSprite = SubResource("AtlasTexture_hc5gb")
+needsElectricitySprite = SubResource("AtlasTexture_thqd4")
