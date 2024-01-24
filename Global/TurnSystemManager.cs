@@ -19,30 +19,30 @@ public partial class TurnSystemManager : Node {
 		// Collect Resources
 		PlayerResources.Instance.CollectResources();
 		
-		//foreach (IBuilding building in PlayerTurnManager.Instance.playerBuildings)
-		//{
-			//if (building.status == BuildingState.BUILDING)
-			//{
-				//// Update Constructions
-				//building.Construct();
-				//continue;
-			//}
-			//
-			//// Execute Defense Actions
-			//switch (building.buildingData.type)
-			//{
-				//case (BuildingType.FREEZERAY):
-				//case (BuildingType.LASER):
-				//{
-					//((IActiveDefense) building).Action();
-					//break;
-				//}
-			//}
-		//} 
+		foreach (IBuilding building in PlayerTurnManager.Instance.playerBuildings)
+		{
+			if (building.status == BuildingState.BUILDING)
+			{
+				// Update Constructions
+				building.Construct();
+				continue;
+			}
+			
+			// Execute Defense Actions
+			switch (building.buildingData.type)
+			{
+				case (BuildingType.FREEZERAY):
+				case (BuildingType.LASER):
+				{
+					((IActiveDefense) building).Action();
+					break;
+				}
+			}
+		} 
 	}
 
 	private void StartBlobTurn() {
-		//CheckVictoryConditions();
+		CheckVictoryConditions();
 		
 		BlobTurnManager.Instance.BlobTurn();
 	}

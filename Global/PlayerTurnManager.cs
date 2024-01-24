@@ -28,7 +28,7 @@ public partial class PlayerTurnManager : Node {
 
 		foreach(IBuilding building in initialBuildingContainer.GetChildren()) {
 			playerBuildings.Add(building);
-
+			
 			Vector2I gridPosition = MapManager.Instance.tilemap.LocalToMap(building.Position);
 			MapManager.Instance.AddBuildingToMap(gridPosition, building);
 			building.currentBuild = 0;
@@ -50,17 +50,7 @@ public partial class PlayerTurnManager : Node {
 	public void SelectItemToBuild(PackedScene building) {
 		selectedItemToBuild = building; 
 	}
-
-	public void Build(PackedScene building) {
-		Vector2 mousePosition = GetViewport().GetMousePosition();
-		Node2D newBuilding = MapManager.Instance.BuildOnTile(selectedHexNode, building);
-		if(newBuilding != null) {
-			playerBuildings.Add(newBuilding);
-		}
-		
-		selectedItemToBuild = null;
-	}
-
+	
 	public void EndTurn() {
 		EmitSignal(SignalName.PlayerTurnEnded);
 	}

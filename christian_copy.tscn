@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mnmst1yewvjq"]
+[gd_scene load_steps=15 format=3 uid="uid://mnmst1yewvjq"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_kmqqc"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_uugve"]
@@ -8,13 +8,11 @@
 [ext_resource type="Script" path="res://Global/PlayerResources.cs" id="5_26nxv"]
 [ext_resource type="Texture2D" uid="uid://cldelr3e2myju" path="res://Art/frozen.png" id="5_lbngt"]
 [ext_resource type="Script" path="res://Global/TurnSystemManager.cs" id="6_t2x4f"]
-[ext_resource type="PackedScene" path="res://Prefabs/Buildings/PowerPlant.tscn" id="7_e0312"]
+[ext_resource type="PackedScene" uid="uid://dxxn7x4byd2hx" path="res://Prefabs/Buildings/PowerPlant.tscn" id="7_e0312"]
 [ext_resource type="TileSet" uid="uid://dd8pmgmxlqvgh" path="res://Resources/Tileset.tres" id="8_50uws"]
 [ext_resource type="PackedScene" uid="uid://duytjno6gtnhy" path="res://Prefabs/Buildings/DefenseLaser.tscn" id="8_122uk"]
 [ext_resource type="PackedScene" uid="uid://buskvgmuj20vs" path="res://UI/BuildingPanel/BuildPanel.tscn" id="9_2p70t"]
 [ext_resource type="PackedScene" uid="uid://bkoxatwx0wkr8" path="res://Prefabs/Buildings/DefenseFreezeRay.tscn" id="9_3ivj1"]
-[ext_resource type="PackedScene" uid="uid://ewpk5q7f26q4" path="res://Scenes/WinScene.tscn" id="9_32n8h"]
-[ext_resource type="PackedScene" uid="uid://bnci3epx8g08a" path="res://Scenes/LossScene.tscn" id="10_gom78"]
 [ext_resource type="PackedScene" uid="uid://lm6tfsgvdtgy" path="res://Prefabs/Buildings/Landmine.tscn" id="12_yelof"]
 
 [node name="Scene" type="Node2D"]
@@ -47,8 +45,6 @@ script = ExtResource("5_26nxv")
 
 [node name="TurnSystemManager" type="Node" parent="Singletons"]
 script = ExtResource("6_t2x4f")
-WinScene = ExtResource("9_32n8h")
-LossScene = ExtResource("10_gom78")
 
 [node name="InitialBuildings" type="Node" parent="."]
 
@@ -63,7 +59,6 @@ position = Vector2(32, 136)
 
 [node name="Landmine" parent="InitialBuildings" instance=ExtResource("12_yelof")]
 position = Vector2(223, 134)
-buildTimer = 5
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("8_50uws")
