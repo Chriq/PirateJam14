@@ -62,7 +62,8 @@ public partial class BuildingPanel : Node2D {
 
 	private void UpdateRepairUI() {
 		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
-		bool isTileRepairable = selectedHexNode.occupierBuilding?.currentHealth < selectedHexNode.occupierBuilding?.buildingData.maxTurnsOfHealth;
+		bool isTileRepairable = selectedHexNode.occupierBlob == null && 
+								selectedHexNode.occupierBuilding?.currentHealth < selectedHexNode.occupierBuilding?.buildingData.maxTurnsOfHealth;
 
 		if(isTileRepairable) {
 			repairButton.Show();
@@ -82,5 +83,11 @@ public partial class BuildingPanel : Node2D {
 	public void ResetBuildPanel() {
 		buildCardsContainer.Hide();
 		repairButton.Hide();
+		labelContainer.Hide();
+	}
+
+	public void EndTurn() {
+		ResetBuildPanel();
+		PlayerTurnManager.Instance.EndTurn();
 	}
 }

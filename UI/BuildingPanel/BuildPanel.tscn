@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://buskvgmuj20vs"]
+[gd_scene load_steps=18 format=3 uid="uid://buskvgmuj20vs"]
 
 [ext_resource type="Script" path="res://UI/BuildingPanel/BuildingPanel.cs" id="1_7t8jj"]
 [ext_resource type="PackedScene" uid="uid://dqiltdwov8ham" path="res://UI/BuildingCard/BuildingCard.tscn" id="1_pd58n"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bexg2dp4mechb" path="res://Prefabs/Buildings/Wall.tscn" id="3_ihbms"]
 [ext_resource type="Texture2D" uid="uid://clb80giyncjqv" path="res://Art/UI.png" id="4_5cyd0"]
 [ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="4_ikv4b"]
-[ext_resource type="Script" path="res://UI/EndPlayerTurn.cs" id="4_sndm3"]
 [ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="6_uoqbe"]
 [ext_resource type="Resource" uid="uid://bfets37l0in22" path="res://Prefabs/Buildings/Resources/Landmine.tres" id="7_rr4tw"]
 [ext_resource type="PackedScene" uid="uid://lm6tfsgvdtgy" path="res://Prefabs/Buildings/Landmine.tscn" id="8_kubxv"]
@@ -237,6 +236,5 @@ offset_right = 636.0
 offset_bottom = 356.0
 theme = ExtResource("6_uoqbe")
 text = "End Turn"
-script = ExtResource("4_sndm3")
 
-[connection signal="pressed" from="EndTurn" to="EndTurn" method="OnClick"]
+[connection signal="pressed" from="EndTurn" to="." method="EndTurn"]
