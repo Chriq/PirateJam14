@@ -24,12 +24,13 @@ public abstract partial class IActiveDefense : IBuilding
 		{
 			float dist = GlobalPosition.DistanceTo(blob.GlobalPosition);
 			
-			if (dist < target_distance)
+			// Prioritize unfrozen blobs
+			if (!frozen_target && blob.freeze_counter > 0)
+				continue;
+			
+			// Target Closest Unfrozen
+			if (dist < target_distance || frozen_target && blob.freeze_counter <= 0)
 			{
-				// Prioritize unfrozen blobs
-				if (!frozen_target && blob.freeze_counter > 0)
-					continue;
-				
 				// Update current target
 				target_distance = dist;
 				frozen_target = blob.freeze_counter > 0;
@@ -37,7 +38,6 @@ public abstract partial class IActiveDefense : IBuilding
 			}
 		}
 		
-		//GD.Print($"ActiveDefense:GetTarget: {target} {target_distance} {frozen_target}");
 		return target;
 	}
 	
@@ -45,11 +45,9 @@ public abstract partial class IActiveDefense : IBuilding
 	{
 		if (counter-- <= 0)
 		{
-			// TODO: Update from building dats
 			counter = defense_fire_counter;
 			
 			Blob target = GetTarget();
-			
 			
 			if (target != null)
 			{

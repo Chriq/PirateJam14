@@ -19,7 +19,7 @@ public partial class PlayerResources : Node {
 			playerResourceCounts.Add(type, 30);
 		}
 	}
-
+	
 	public void CollectResources() {
 		foreach(IBuilding buildingNode in PlayerTurnManager.Instance.playerBuildings) {
 			if (
@@ -33,7 +33,6 @@ public partial class PlayerResources : Node {
 				Dictionary<ResourceType, int> yields = building.YieldResources();
 				foreach(ResourceType key in yields.Keys) {
 					playerResourceCounts[key] += yields[key];
-					GD.Print($"{yields[key]} {Enum.GetName(typeof(ResourceType), key)} from {building.Name}");
 				}
 			}
 		}

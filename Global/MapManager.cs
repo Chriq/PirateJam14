@@ -114,22 +114,21 @@ public partial class MapManager : Node {
 		building.QueueFree();
 	}
 	
-	public Node2D BuildOnTile(HexNode tile, PackedScene building) {
+	public void BuildOnTile(HexNode tile, PackedScene building) {
 		Vector2I cell = PlayerTurnManager.Instance.selectedTileIndex;
 		IBuilding build = (IBuilding) (Node2D) building.Instantiate();
 		bool sufficientResources = PlayerResources.Instance.SpendResourcesOnBuilding(build);
-
-		if(sufficientResources) {
-			build.Position = tilemap.MapToLocal(cell);
-			SpawnNode.AddChild(build);
-			AddBuildingToMap(cell, build);
-			Cursor.Instance.DeselectTile();
-			EmitSignal(SignalName.BuildingAdded);
-
-			return build;
-		}
 		
-		return null;
+		if(!sufficientResources)
+			GD.Print("INSUFFICIENT RESOURCES");
+		
+		build.Position = tilemap.MapToLocal(cell);
+		SpawnNode.AddChild(build);
+		AddBuildingToMap(cell, build);
+		Cursor.Instance.DeselectTile();
+		EmitSignal(SignalName.BuildingAdded);
+		
+		PlayerTurnManager.Instance.playerBuildings.Add(build);
 	}
 
 	public void RepairBuildingOnTile(HexNode tile) {

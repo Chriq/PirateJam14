@@ -4,12 +4,11 @@ using System.Collections.Generic;
 public partial class IBuilding : Node2D {
 	[Export] public Building buildingData;
 	
-	
 	private Sprite2D ConstructionSprite = null;
 	
 	public BuildingState status { get; private set; }
 	
-	public int currentBuild;
+	[Export] public int currentBuild = 10;
 	public int currentHealth;
 
 	public Dictionary<ResourceType, int> buildCost;
@@ -26,12 +25,13 @@ public partial class IBuilding : Node2D {
 		AddChild(damagedSprite);
 		
 		currentHealth = buildingData.maxTurnsOfHealth;
-		Repair();
-		Construct();
+		
+		if (currentBuild > 0)
+			Repair();
 	}
 	
 	public void Repair()
-	{
+	{		
 		status = BuildingState.BUILDING;
 		currentBuild = buildingData.buildTimer;
 		AddChild(ConstructionSprite);

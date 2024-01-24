@@ -12,8 +12,8 @@ public partial class BuildingPanel : Node2D {
 	[Export] private Node2D buildCardsContainer;
 	[Export] private Button repairButton;
 
-    public override void _Ready() {
-        PlayerResources.Instance.ResourcesChanged += UpdateResourceUI;
+	public override void _Ready() {
+		PlayerResources.Instance.ResourcesChanged += UpdateResourceUI;
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateBuildUI;
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateRepairUI;
 		PlayerTurnManager.Instance.HexNodeSelected += UpdateNameUI;
@@ -21,7 +21,7 @@ public partial class BuildingPanel : Node2D {
 		repairButton.Pressed += Repair;
 		UpdateResourceUI();
 		ResetBuildPanel();
-    }
+	}
 
 	private void UpdateNameUI() {
 		HexNode selectedHexNode = PlayerTurnManager.Instance.selectedHexNode;
@@ -39,7 +39,7 @@ public partial class BuildingPanel : Node2D {
 		}
 	}
 
-    private void UpdateResourceUI() {
+	private void UpdateResourceUI() {
 		electricityLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.ELECTRICITY].ToString();
 		woodLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.WOOD].ToString();
 		steelLabel.Text = PlayerResources.Instance.playerResourceCounts[ResourceType.STEEL].ToString();
