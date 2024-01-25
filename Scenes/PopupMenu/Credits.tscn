@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy3sdlw0sgf23"]
+
+[ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="1_7n3i1"]
+[ext_resource type="Script" path="res://Scenes/PopupMenu/ClosePopup.cs" id="2_8xlb4"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -135.0
+offset_right = 150.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 40.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]
+Credits
+[/center]"
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -35.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_7n3i1")
+text = "RETURN"
+script = ExtResource("2_8xlb4")
+
+[connection signal="pressed" from="ColorRect/Button" to="ColorRect/Button" method="Close"]
