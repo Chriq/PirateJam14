@@ -18,6 +18,13 @@ public partial class SplashScreen : Node
 		});
 	}
 
+	public void FadeExitOut()
+	{
+		if(enableMouse) {
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+		}
+	}
+	
 	public void ContinueToGame() {
 		fade.FadeInWithCallback(splashScreen, delegate {
 			if(enableMouse) {
