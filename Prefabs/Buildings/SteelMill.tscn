@@ -6,6 +6,7 @@
 
 [node name="SteelMill" type="Node2D"]
 script = ExtResource("1_0qbr3")
+yieldAmt = 3
 buildingData = ExtResource("2_56wmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

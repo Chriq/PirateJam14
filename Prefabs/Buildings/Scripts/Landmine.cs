@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class Landmine : IBuilding {
-	[Export] private int LandmineDamage = 5;
+	[Export] private int LandmineDamage = 1;
 	
 	public override void DamageHealth(Vector2I position, int damage = 1)
 	{
@@ -30,5 +30,7 @@ public partial class Landmine : IBuilding {
 				BlobTurnManager.Instance.DeleteBlob(node.occupierBlob);
 			}
 		}
+
+		QueueFree();
 	}
 }

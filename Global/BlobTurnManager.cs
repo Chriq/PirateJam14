@@ -48,10 +48,10 @@ public partial class BlobTurnManager : Node
 	
 	// Blob Sliders
 	[ExportGroup("Blob Turn Behavior")]
-	[Export] public int blob_initial_counter = 10;
+	[Export] public int blob_initial_counter = 1;
 	[Export] public int blob_freeze_counter = 4;
-	[Export] public int blob_eat_counter = 5;
-	[Export] public int blob_grow_counter = 5;
+	[Export] public int blob_eat_counter = 2;
+	[Export] public int blob_grow_counter = 1;
 	[Export] public int blob_launch_counter = 5;
 	
 	private void BlobInit()
@@ -97,7 +97,7 @@ public partial class BlobTurnManager : Node
 		{
 			Blob blob = Blobs[blob_i];
 			
-			if (blob.BlobTurn())
+			if (blob != null && blob.BlobTurn())
 			{
 				Vector2I[] offsets = MapManager.Instance.GetOffsets(blob.position);
 				int len = offsets.Length;
