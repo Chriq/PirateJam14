@@ -3,7 +3,7 @@ using System;
 
 public abstract partial class IActiveDefense : IBuilding
 {
-	[Export] private int defense_fire_counter = 3;
+	[Export] private int defense_fire_counter = 1;
 	private int counter;
 	
 	public override void _Ready() {

@@ -49,10 +49,10 @@ public partial class BlobTurnManager : Node
 	// Blob Sliders
 	[ExportGroup("Blob Turn Behavior")]
 	[Export] public int blob_initial_counter = 1;
-	[Export] public int blob_freeze_counter = 4;
+	[Export] public int blob_freeze_counter = 3;
 	[Export] public int blob_eat_counter = 2;
 	[Export] public int blob_grow_counter = 1;
-	[Export] public int blob_launch_counter = 5;
+	[Export] public int blob_launch_counter = 3;
 	
 	private void BlobInit()
 	{

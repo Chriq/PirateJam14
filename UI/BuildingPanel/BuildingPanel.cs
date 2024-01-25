@@ -79,8 +79,11 @@ public partial class BuildingPanel : Node2D {
 		}
 		
 
-		if(isTileRepairable && canAfford) {
+		if(isTileRepairable) {
 			repairButton.Show();
+			repairButton.Disabled = false;
+		} else if(!canAfford) {
+			repairButton.Disabled = true;
 		} else {
 			repairButton.Hide();
 		}
