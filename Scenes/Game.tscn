@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c21ifyqrnx6lm"]
+[gd_scene load_steps=17 format=3 uid="uid://bup62kprndpjp"]
 
 [ext_resource type="Script" path="res://Global/MapManager.cs" id="1_dfv1d"]
 [ext_resource type="Script" path="res://Global/PlayerTurnManager.cs" id="2_son7o"]
