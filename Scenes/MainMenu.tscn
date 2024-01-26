@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://yhuj0238mle0"]
+[gd_scene load_steps=9 format=3 uid="uid://yhuj0238mle0"]
 
 [ext_resource type="Script" path="res://Scenes/SplashScreen/FadeController.cs" id="1_4fxik"]
 [ext_resource type="Script" path="res://Scenes/SplashScreen/SplashScreen.cs" id="1_4q4o0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bup62kprndpjp" path="res://Scenes/Game.tscn" id="2_lh3mw"]
 [ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="2_qrd6l"]
 [ext_resource type="Script" path="res://Global/SceneChange.cs" id="3_hhtyb"]
+[ext_resource type="Script" path="res://Scenes/StartMusic.cs" id="3_xgnj7"]
 [ext_resource type="Texture2D" uid="uid://bh06o4oiu83xt" path="res://Art/title.png" id="7_d8cr5"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("splashScreen", "fade", "timer")]
@@ -21,6 +22,9 @@ fade = NodePath("Fade")
 scene = ExtResource("2_lh3mw")
 timer = NodePath("Timer")
 enableMouse = true
+
+[node name="StartMusic" type="Node" parent="."]
+script = ExtResource("3_xgnj7")
 
 [node name="Fade" type="Node" parent="."]
 script = ExtResource("1_4fxik")

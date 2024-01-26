@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy3sdlw0sgf23"]
+[gd_scene load_steps=4 format=3 uid="uid://dy3sdlw0sgf23"]
 
 [ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="1_7n3i1"]
+[ext_resource type="Texture2D" uid="uid://bbaavwltgc6f6" path="res://Art/jam_full.png" id="1_l5vl8"]
 [ext_resource type="Script" path="res://Scenes/PopupMenu/ClosePopup.cs" id="2_8xlb4"]
 
 [node name="Credits" type="Control"]
@@ -39,6 +40,80 @@ grow_horizontal = 2
 bbcode_enabled = true
 text = "[center]
 Credits
+[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_top = 22.0
+offset_right = 90.0
+offset_bottom = 62.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center]
+A GAME BY
+Game-Flavored Jam
+[/center]"
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(151, 93)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_l5vl8")
+region_enabled = true
+region_rect = Rect2(670, 310, 260, 290)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.0
+offset_top = 116.0
+offset_right = 141.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]
+PROGRAMMING
+ Jack Chandler, Christian Cook
+[/center]"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_top = 150.0
+offset_right = 90.0
+offset_bottom = 190.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]
+ART
+Christian Cook
+[/center]"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_top = 183.0
+offset_right = 90.0
+offset_bottom = 223.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]
+MUSIC/IDEAS GUY
+Sebastian Segura
 [/center]"
 
 [node name="Button" type="Button" parent="ColorRect"]
