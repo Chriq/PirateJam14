@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cprovhcw7gamu"]
+[gd_scene load_steps=5 format=3 uid="uid://cprovhcw7gamu"]
 
+[ext_resource type="Texture2D" uid="uid://crmegvjukn04b" path="res://Art/TileSet.png" id="1_64dht"]
 [ext_resource type="Theme" uid="uid://hp5foa5s5r01" path="res://UI/UITheme.tres" id="1_vmkq1"]
+[ext_resource type="Texture2D" uid="uid://clb80giyncjqv" path="res://Art/UI.png" id="2_i3tbn"]
 [ext_resource type="Script" path="res://Scenes/PopupMenu/ClosePopup.cs" id="2_putbc"]
 
 [node name="Credits" type="Control"]
@@ -40,6 +42,86 @@ bbcode_enabled = true
 text = "[center]
 Instructions
 [/center]"
+
+[node name="Instructions" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 27.0
+offset_right = 143.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "This is a blob. It will expand rapidly and attack your buildings. It will also launch smaller blobs to different parts of the map, so be careful!"
+
+[node name="Blob" type="Sprite2D" parent="ColorRect"]
+position = Vector2(22, 50)
+texture = ExtResource("1_64dht")
+region_enabled = true
+region_rect = Rect2(64, 64, 32, 32)
+
+[node name="Instructions2" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 87.0
+offset_right = 143.0
+offset_bottom = 138.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Every turn you receive wood, steel, and oil. Use these to build defenses and keep operations running."
+
+[node name="Blob2" type="Sprite2D" parent="ColorRect"]
+position = Vector2(26, 101)
+texture = ExtResource("2_i3tbn")
+region_enabled = true
+region_rect = Rect2(16, 0, 48, 16)
+
+[node name="Instructions3" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 127.0
+offset_right = 146.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Power plants power your buildings. Watch your power surplus/deficit. If your balance is negative, your builings will power down."
+
+[node name="Blob3" type="Sprite2D" parent="ColorRect"]
+position = Vector2(22, 147)
+texture = ExtResource("1_64dht")
+region_enabled = true
+region_rect = Rect2(0, 96, 32, 32)
+
+[node name="Blob4" type="Sprite2D" parent="ColorRect"]
+position = Vector2(46, 147)
+texture = ExtResource("2_i3tbn")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Instructions4" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 179.0
+offset_right = 147.0
+offset_bottom = 214.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Do your best to keep your buildings operational and build defenses aginst The Blob."
 
 [node name="Button" type="Button" parent="ColorRect"]
 layout_mode = 1
